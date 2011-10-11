@@ -8,7 +8,7 @@ alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"
 alias ls='ls -aF'
 alias sl='ls'
 
-if [ -f $HOME/.bash_profile.mine]; then
+if [ -f $HOME/.bash_profile.mine ]; then
     source $HOME/.bash_profile.mine
 fi
 
