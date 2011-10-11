@@ -1,0 +1,17 @@
+[user]
+  name = Shingo Omura
+  email = everpeace@gmail.com
+[color]
+  # colorの設定(以下のコマンドは自動で色つける)
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  grep = auto
+[push]
+  default = tracking       # defaultのpush先はtrackingしているリポジトリ
+[core]
+  excludesfile = ~/.gitignore  # globalな.gitignoreの指定
+  autocrlf = input                 # CRLFを自動変換
+[http]
+  sslVerify = false
