@@ -1,0 +1,27 @@
+[submodule ".vim/bundle/unite.vim"]
+  path = .vim/bundle/unite.vim
+  url = git://github.com/Shougo/unite.vim.git
+[submodule ".vim/bundle/scala-vim-support"]
+	path = .vim/bundle/scala-vim-support
+	url = git://github.com/rosstimson/scala-vim-support.git
+[submodule ".vim/bundle/surround.vim"]
+	path = .vim/bundle/surround.vim
+	url = https://github.com/vim-scripts/surround.vim.git
+[submodule ".vim/bundle/The-NERD-Commenter"]
+	path = .vim/bundle/The-NERD-Commenter
+	url = git://github.com/vim-scripts/The-NERD-Commenter.git
+[submodule ".vim/bundle/grep.vim"]
+	path = .vim/bundle/grep.vim
+	url = git://github.com/vim-scripts/grep.vim.git
+[submodule ".vim/bundle/YankRing.vim"]
+	path = .vim/bundle/YankRing.vim
+	url = git://github.com/vim-scripts/YankRing.vim.git
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule ".vim/bundle/minibufexpl.vim"]
+	path = .vim/bundle/minibufexpl.vim
+	url = git://github.com/vim-scripts/minibufexpl.vim.git
+[submodule ".vim/bundle/vtreeexplorer"]
+	path = .vim/bundle/vtreeexplorer
+	url = git://github.com/vim-scripts/vtreeexplorer.git
