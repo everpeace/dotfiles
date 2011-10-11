@@ -19,6 +19,7 @@ Session.vim
 samples
 
 #.vim/bundle/
+/.vim/.netrwhist
 
 # Eclipse
 .classpath
