@@ -1,9 +1,27 @@
-" pathogenでftdetectなどをloadさせるために一度ファイルタイプ判定をoff
 filetype off
 " pathogen.vimによってbundle配下のpluginをpathに加える
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-set helpfile=$VIMRUNTIME/doc/help.txt
+"call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
+"set helpfile=$VIMRUNTIME/doc/help.txt
+
+set rtp+=~/.vim/vundle
+call vundle#rc()
+
+Bundle 'neocomplcache'
+Bundle 'YankRing.vim'
+Bundle 'minibufexpl.vim'
+Bundle 'grep.vim'
+Bundle 'The-NERD-Commenter'
+Bundle 'The-NERD-tree'
+Bundle 'open-browser.vim'
+Bundle 'Smooth-Scroll'
+Bundle 'quickrun.vim'
+Bundle 'surround.vim'
+Bundle 'vtreeexplorer'
+
+Bundle 'Shougo/unite.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'rosstimson/scala-vim-support'
 
 " ファイルタイプ判定をon
 filetype plugin on
