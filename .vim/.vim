@@ -1,1 +1,0 @@
-/Users/everpeace/dotfiles/.vim
