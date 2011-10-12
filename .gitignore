@@ -18,8 +18,8 @@ Session.vim
 .zsh_alias
 samples
 
-#.vim/bundle/
-/.vim/.netrwhist
+.vim/bundle/
+.vim/.netrwhist
 
 # Eclipse
 .classpath
