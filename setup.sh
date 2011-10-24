@@ -4,8 +4,8 @@ function make_link()
 {
   if [ $# -eq 1 ];then
     _filename=$1
-    echo "ln -s $FROM/$_filename $TO/$_filename"
-    ln -s $FROM/$_filename $TO/$_filename
+    echo "ln -hfs $FROM/$_filename $TO/$_filename"
+    ln -hfs $FROM/$_filename $TO/$_filename
   fi
 }
 
@@ -21,6 +21,7 @@ make_link .gitignore
 make_link .vim
 make_link .vimrc
 make_link .zshrc
+make_link .screenrc
 
 IFS=:
 GIT=false
