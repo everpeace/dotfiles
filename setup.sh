@@ -22,6 +22,7 @@ make_link .vim
 make_link .vimrc
 make_link .zshrc
 make_link .screenrc
+make_link .Rprofile
 
 IFS=:
 GIT=false
