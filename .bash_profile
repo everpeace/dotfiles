@@ -9,6 +9,8 @@ DOTFILE_DIR=`readlink ${HOME}/.bash_profile| sed -e 's/\/\.bash_profile//'`
 PATH="${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/svm:${PATH}"
 export PATH
 
+export SCALA_HOME=${HOME}/.svm/current/rt
+
 if [ -f $HOME/.bash_profile.mine ]; then
     source $HOME/.bash_profile.mine
 fi
