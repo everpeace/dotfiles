@@ -56,3 +56,6 @@ target
 .ensime
 .ensime~
 
+# R app
+**/.Rapp.history
+
