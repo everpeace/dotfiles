@@ -21,6 +21,7 @@ Bundle 'vtreeexplorer'
 Bundle 'rainbow.zip'
 Bundle 'dw_colors'
 Bundle 'HHCS_D'
+Bundle 'Vim-R-Plugin'
 
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-fugitive'
