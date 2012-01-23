@@ -28,9 +28,9 @@ if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
   git_branch() {
    __git_ps1 '(git:%s)'
   }
-  export PS1="\\u@\\h:\\W \\n\$(git_branch)$ "
+  export PS1="\\n[\\w \$(git_branch)]\n\\u@\\h $ "
 else
-  export PS1="\\u@\h:\\W\\n$ "
+  export PS1="\\n[\\w]\\n\\u@\h $ "
 fi
 # Vim
 if [ -f /Applications/MacVim.app ]; then
