@@ -26,9 +26,9 @@ fi
 if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
   source /usr/local/git/contrib/completion/git-completion.bash
   git_branch() {
-   __git_ps1 ' (git:%s)'
+   __git_ps1 '(git:%s)'
   }
-  export PS1="\\e]2;\$(git_branch)\\a\\n--[\\u@\\h]---[\\W\$(git_branch)]---\\n $ "
+  export PS1="\\e]2;\$(git_branch)\\a\\n-(\\u@\\h)-(\\w)-\\n\$(git_branch) $ "
 else
   export PS1="\\n[\\w]\\n\\u@\h $ "
 fi
