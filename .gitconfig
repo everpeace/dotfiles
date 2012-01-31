@@ -15,3 +15,6 @@
   autocrlf = input                 # CRLFを自動変換
 [http]
   sslVerify = false
+[alias]
+  tr = log --graph --pretty='format:%C(yellow)%h[%cr%Creset] %s %Cgreen(%an)%Creset %Cred%d%Creset'
+
