@@ -18,3 +18,9 @@
 [alias]
   tr = log --graph --pretty='format:%C(yellow)%h[%cr%Creset] %s %Cgreen(%an)%Creset %Cred%d%Creset'
 
+[sendemail]
+	smtpencryption = tls
+	smtpserver = /usr/local/bin/msmtp
+	smtpuser = everpeace@gmail.com
+	smtpserverport = 587
+	chainreplyto = false
