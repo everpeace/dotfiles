@@ -3,9 +3,16 @@
 function make_link()
 {
   if [ $# -eq 1 ];then
-    _filename=$1
-    echo "ln -hfs $FROM/$_filename $TO/$_filename"
-    ln -hfs $FROM/$_filename $TO/$_filename
+    _fromfilename=$1
+    _tofilename=$1
+  fi
+  if [ $# -eq 2 ];then
+    _fromfilename=$1
+    _tofilename=$2
+  fi
+  if [ $# -eq 1 -o $# -eq 2 ];then
+    echo "ln -hfs $FROM/$_fromfilename $TO/$_tofilename"
+    ln -hfs $FROM/$_fromfilename $TO/$_tofilename
   fi
 }
 
@@ -17,12 +24,14 @@ FROM=`cd $FROM;pwd`
 TO=$HOME
 
 make_link .bash_profile
-make_link .gitignore
+make_link .gitignor
 make_link .vim
 make_link .vimrc
 make_link .zshrc
 make_link .screenrc
 make_link .Rprofile
+make_link msmtp/.msmtprc .msmtprc
+make_link msmtp/.certs/ThawtePremiumServerCA.pem .ThawtePremiumServerCA.pem
 
 IFS=:
 GIT=false
