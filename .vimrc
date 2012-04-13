@@ -22,7 +22,7 @@ Bundle 'rainbow.zip'
 Bundle 'dw_colors'
 Bundle 'HHCS_D'
 Bundle 'Vim-R-Plugin'
-
+Bundle 'po.vim--gray'
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'rosstimson/scala-vim-support'
