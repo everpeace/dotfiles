@@ -4,3 +4,6 @@
 [submodule "svm"]
 	path = svm
 	url = https://github.com/yuroyoro/svm.git
+[submodule "sbt-extras"]
+	path = sbt-extras
+	url = https://github.com/paulp/sbt-extras.git

@@ -7,7 +7,7 @@ alias sl='ls'
 
 # svm settings
 DOTFILE_DIR=`readlink ${HOME}/.bash_profile| sed -e 's/\/\.bash_profile//'`
-PATH="${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/svm:${PATH}"
+PATH="${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/sbt-extras:${DOTFILE_DIR}/svm:${PATH}"
 export PATH
 export SCALA_HOME=${HOME}/.svm/current/rt
 
@@ -38,7 +38,6 @@ if [ -f /Applications/MacVim.app ]; then
    alias vi='env LANG=ja_jp.utf-8 /Applications/Mail.app/Contents/MacOS/Vim "$@"'
    alias vim='env LANG=ja_jp.utf-8 /Applications/Mail.app/Contents/MacOS/Vim "$@"'
 fi
-
 ## source .bash_profile.mine ##
 if [ -f $HOME/.bash_profile.mine ]; then
     source $HOME/.bash_profile.mine
