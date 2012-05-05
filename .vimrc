@@ -26,6 +26,8 @@ Bundle 'po.vim--gray'
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'rosstimson/scala-vim-support'
+Bundle 'pangloss/vim-erlang'
+
 
 " ファイルタイプ判定をon
 filetype plugin on
