@@ -11,6 +11,8 @@ PATH="${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/sbt-extras:${DOTFILE_DIR}/svm:$
 export PATH
 export SCALA_HOME=${HOME}/.svm/current/rt
 
+alias gitsshm="source $DOTFILE_DIR/gitsshm"
+
 ## bash_completion ##
 # brew's bash_completion
 if [ -f /usr/local/bin/brew ]; then
