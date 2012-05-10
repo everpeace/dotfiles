@@ -20,8 +20,9 @@ Action:
   -u|setup [username]  - add public keys for github to ssh_addgent and set up GIT_SSH environment variable for given username.
   -r|reset             - reset GIT_SSH environment variables and delete public keys for github from ssh-agent.
   -l|list              - list available user names.
-  -c|check             - list all keys registered in ssh-agent.
-  -s|switch [username] - setup SSH environment for given username.
+  -L|listkeys          - list all keys registered in ssh-agent.
+  -c|current           - print current GIT_SSH setting.
+  -s|switch [username] - setup GIT_SSH environment for given username.
   [username]           - shortcut for switch.
 
 Info:
@@ -146,7 +147,8 @@ else
                       else
                         usage
                       fi ;;
-    -c|check)         $SSH_ADD -l;;
+    -L|listkeys)      $SSH_ADD -l;;
+    -c|check)         print_current_git_ssh;;
     -s|switch)        switch $2;;
     -*)               usage;;
     *)                switch $1;;
