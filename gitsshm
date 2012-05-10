@@ -1,0 +1,148 @@
+#!/bin/bash
+
+if [ -z $GITHUB_KEYS_DIR ]; then
+  GITHUB_KEYS_DIR="$HOME/github-keys"
+fi
+
+if [ -z $GITHUB_KEY_FILE_NAME ]; then
+  GITHUB_KEY_FILE_NAME="id_rsa"
+fi
+
+usage(){
+  cat << EOS
+gitsshm:  GIT_SSH Manager.
+
+Usage:
+  gitsshm [Action]
+
+Action:
+  -h|help              - show this help.
+  -u|setup [username]  - add public keys for github to ssh_addgent and set up GIT_SSH environment variable for given username.
+  -r|reset             - reset GIT_SSH environment variables and delete public keys for github from ssh-agent.
+  -l|list              - list available user names.
+  -c|check             - list all keys registered in ssh-agent.
+  -s|switch [username] - setup SSH environment for given username.
+  [username]           - shortcut for switch.
+
+Info:
+  Shingo Omura
+    github : http://everpeace.github.com
+    twitter: http://twitter.com/everpeace
+
+EOS
+}
+
+list_users(){
+  echo 'available usernames:'
+  ls -1 $GITHUB_KEYS_DIR
+  echo ''
+  print_current_git_ssh
+}
+
+check_git_ssh(){
+  if echo $GIT_SSH |grep -q "$GITHUB_KEYS_DIR/.gitsshm/"
+  then
+    echo 'detected GIT_SSH is maintained by chgitssh.'
+  else
+    case $1 in
+      setup) echo 'WARNING: GIT_SSH may not be maintained by chgitssh.  GIT_SSH will be overwritten.'
+               print_current_git_ssh;;
+      *)       echo 'ERROR: GIT_SSH may not be maintained by chgitssh. setup first.'
+               exit;;
+    esac
+  fi
+}
+
+setup(){
+  setup="setup"
+  check_git_ssh ${setup}
+  echo "mkdir $GITHUB_KEYS_DIR/.gitsshm"
+  mkdir -p $GITHUB_KEYS_DIR/.gitsshm
+  echo "all keys in $GITHUB_KEYS_DIR will be added to ssh_agent"
+  for u in `ls -1 $GITHUB_KEYS_DIR`
+  do
+    add_to_ssh_agent ${u}
+    echo "create $GITHUB_KEYS_DIR/.gitsshm/${u}-ssh.sh"
+    echo "exec $SSH -i $GITHUB_KEYS_DIR/${u}/$GITHUB_KEY_FILE_NAME \"\$@\"" > $GITHUB_KEYS_DIR/.gitsshm/${u}-ssh.sh
+    chmod u+x $GITHUB_KEYS_DIR/.gitsshm/${u}-ssh.sh
+  done
+  set_git_ssh $1
+  print_current_git_ssh
+}
+
+reset(){
+  check_git_ssh
+  for u in `ls -1 $GITHUB_KEYS_DIR`
+  do
+    delete_from_ssh_agent ${u}
+  done
+  echo "remove dir $GITHUB_KEYS_DIR/.gitsshm"
+  rm -rf $GITHUB_KEYS_DIR/.gitsshm
+  unset GIT_SSH
+  print_current_git_ssh
+}
+
+delete_from_ssh_agent(){
+#  echo "$SSH_ADD -d $GITHUB_KEYS_DIR/$1/$GITHUB_KEY_FILE_NAME"
+  $SSH_ADD -d $GITHUB_KEYS_DIR/$1/$GITHUB_KEY_FILE_NAME
+}
+
+add_to_ssh_agent(){
+#  echo "$SSH_ADD $GITHUB_KEYS_DIR/$1/$GITHUB_KEY_FILE_NAME"
+  $SSH_ADD $GITHUB_KEYS_DIR/$1/$GITHUB_KEY_FILE_NAME
+}
+
+print_current_git_ssh(){
+  if [ -z "$GIT_SSH" ]; then
+    echo 'GIT_SSH is not set now.'
+  else
+    echo "current GIT_SSH is $GIT_SSH"
+  fi
+}
+
+set_git_ssh(){
+    export GIT_SSH=$GITHUB_KEYS_DIR/.gitsshm/$1-ssh.sh
+}
+
+switch(){
+  check_git_ssh
+  username=$1
+  if [ -z "${username}" ]; then
+    echo 'error: Username must be given.'
+    usage
+  else
+   set_git_ssh $1
+   print_current_git_ssh
+  fi
+}
+
+SSH_ADD=`which ssh-add`
+SSH=`which ssh`
+action="$1"
+
+if [ -z "${action}" ]; then
+  usage
+else
+  case "${action}" in
+    -h|help)          usage;;
+    -u|setup)         if [ $# == 2 ]; then
+                        setup $2
+                      else
+                        usage
+                      fi ;;
+    -r|reset)         if [ $# == 1 ]; then
+                        reset
+                      else
+                        usage
+                      fi ;;
+    -l|list)          if [ $# == 1 ]; then
+                        list_users
+                      else
+                        usage
+                      fi ;;
+    -c|check)         $SSH_ADD -l;;
+    -s|switch)        switch $2;;
+    -*)               usage;;
+    *)                switch $1;;
+  esac
+fi
