@@ -17,7 +17,7 @@ Usage:
 
 Action:
   -h|help              - show this help.
-  -u|setup [username]  - add public keys for github to ssh_addgent and set up GIT_SSH environment variable for given username.
+  -u|setup             - add public keys for github to ssh-agent.
   -r|reset             - reset GIT_SSH environment variables and delete public keys for github from ssh-agent.
   -l|list              - list available user names.
   -L|listkeys          - list all keys registered in ssh-agent.
@@ -34,7 +34,6 @@ EOS
 }
 
 list_users(){
-  echo 'available usernames:'
   $LS -1 $GITHUB_KEYS_DIR
   echo ''
   print_current_git_ssh
@@ -45,12 +44,15 @@ check_git_ssh(){
   then
     echo 'detected GIT_SSH is maintained by chgitssh.'
   else
-    case $1 in
-      setup) echo 'WARNING: GIT_SSH may not be maintained by chgitssh.  GIT_SSH will be overwritten.'
-               print_current_git_ssh;;
-      *)       echo 'ERROR: GIT_SSH may not be maintained by chgitssh. setup first.'
-               exit;;
-    esac
+    print_current_git_ssh
+    echo 'WARNING: GIT_SSH may not be maintained by chgitssh.  GIT_SSH will be overwritten.'
+#    case $1 in
+#      setup)   echo 'WARNING: GIT_SSH may not be maintained by chgitssh.  GIT_SSH will be overwritten.'
+#               print_current_git_ssh;;
+#      *)       echo 'ERROR: GIT_SSH may not be maintained by chgitssh. setup first.'
+#               return 2 > /dev/null
+#               exit;;
+#    esac
   fi
 }
 
@@ -65,12 +67,14 @@ setup(){
     add_to_ssh_agent ${u}
     echo "exec $SSH -i $GITHUB_KEYS_DIR/${u}/$GITHUB_KEY_FILE_NAME \"\$@\"" > $GITHUB_KEYS_DIR/.gitsshm/${u}-ssh.sh
     echo "create $GITHUB_KEYS_DIR/.gitsshm/${u}-ssh.sh"
-#   echo "export GIT_SSH=$GITHUB_KEYS_DIR/.gitsshm/$1-ssh.sh" > $GITHUB_KEYS_DIR/.gitsshm/${u}-set.sh
     chmod u+x $GITHUB_KEYS_DIR/.gitsshm/${u}-ssh.sh
   done
-#  echo "unset GIT_SSH" > $GITHUB_KEYS_DIR/.gitsshm/un_set.sh
-   set_git_ssh $1
-  print_current_git_ssh
+#  if [ -z $1 ]; then
+#     print_current_git_ssh
+#  else
+#     set_git_ssh $1
+#     print_current_git_ssh
+#  fi
 }
 
 reset(){
@@ -116,8 +120,16 @@ switch(){
     echo 'error: Username must be given.'
     usage
   else
-   set_git_ssh $1
-   print_current_git_ssh
+    for u in `$LS -1 $GITHUB_KEYS_DIR`
+    do
+      if [ ${u} = $1 ]; then
+        set_git_ssh $1
+        print_current_git_ssh
+        return
+      fi
+    done
+    echo "ERROR: $1 is not available. GIT_SSH will be not set. Try -l action."
+    print_current_git_ssh
   fi
 }
 
@@ -132,8 +144,11 @@ if [ -z "${action}" ]; then
 else
   case "${action}" in
     -h|help)          usage;;
-    -u|setup)         if [ $# == 2 ]; then
-                        setup $2
+    -u|setup)         if [ $# == 1 ]; then
+                        setup
+                        echo ''
+                        echo 'Now you can switch GIT_SSH by -s action for available usernames:'
+                        list_users
                       else
                         usage
                       fi ;;
@@ -143,7 +158,8 @@ else
                         usage
                       fi ;;
     -l|list)          if [ $# == 1 ]; then
-                        list_users
+                         echo 'available usernames:'
+                         list_users
                       else
                         usage
                       fi ;;
