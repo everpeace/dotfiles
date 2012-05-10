@@ -13,7 +13,7 @@ usage(){
 gitsshm:  GIT_SSH Manager.
 
 Usage:
-  gitsshm [Action]
+  source gitsshm [Action]
 
 Action:
   -h|help              - show this help.
@@ -34,7 +34,7 @@ EOS
 
 list_users(){
   echo 'available usernames:'
-  ls -1 $GITHUB_KEYS_DIR
+  $LS -1 $GITHUB_KEYS_DIR
   echo ''
   print_current_git_ssh
 }
@@ -59,24 +59,27 @@ setup(){
   echo "mkdir $GITHUB_KEYS_DIR/.gitsshm"
   mkdir -p $GITHUB_KEYS_DIR/.gitsshm
   echo "all keys in $GITHUB_KEYS_DIR will be added to ssh_agent"
-  for u in `ls -1 $GITHUB_KEYS_DIR`
+  for u in `$LS -1 $GITHUB_KEYS_DIR`
   do
     add_to_ssh_agent ${u}
-    echo "create $GITHUB_KEYS_DIR/.gitsshm/${u}-ssh.sh"
     echo "exec $SSH -i $GITHUB_KEYS_DIR/${u}/$GITHUB_KEY_FILE_NAME \"\$@\"" > $GITHUB_KEYS_DIR/.gitsshm/${u}-ssh.sh
+    echo "create $GITHUB_KEYS_DIR/.gitsshm/${u}-ssh.sh"
+#   echo "export GIT_SSH=$GITHUB_KEYS_DIR/.gitsshm/$1-ssh.sh" > $GITHUB_KEYS_DIR/.gitsshm/${u}-set.sh
     chmod u+x $GITHUB_KEYS_DIR/.gitsshm/${u}-ssh.sh
   done
-  set_git_ssh $1
+#  echo "unset GIT_SSH" > $GITHUB_KEYS_DIR/.gitsshm/un_set.sh
+   set_git_ssh $1
   print_current_git_ssh
 }
 
 reset(){
   check_git_ssh
-  for u in `ls -1 $GITHUB_KEYS_DIR`
+  for u in `$LS -1 $GITHUB_KEYS_DIR`
   do
     delete_from_ssh_agent ${u}
   done
   echo "remove dir $GITHUB_KEYS_DIR/.gitsshm"
+#  source $GITHUB_KEYS_DIR/.gitsshm/un_set.sh
   rm -rf $GITHUB_KEYS_DIR/.gitsshm
   unset GIT_SSH
   print_current_git_ssh
@@ -101,7 +104,8 @@ print_current_git_ssh(){
 }
 
 set_git_ssh(){
-    export GIT_SSH=$GITHUB_KEYS_DIR/.gitsshm/$1-ssh.sh
+  export GIT_SSH=$GITHUB_KEYS_DIR/.gitsshm/$1-ssh.sh
+#  source $GITHUB_KEYS_DIR/.gitsshm/$1-set.sh
 }
 
 switch(){
@@ -118,6 +122,8 @@ switch(){
 
 SSH_ADD=`which ssh-add`
 SSH=`which ssh`
+LS=`which ls`
+
 action="$1"
 
 if [ -z "${action}" ]; then
