@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z $GITHUB_KEYS_DIR ]; then
-  GITHUB_KEYS_DIR="$HOME/github-keys"
+  GITHUB_KEYS_DIR="/cygdrive/d/github-keys"
 fi
 
 if [ -z $GITHUB_KEY_FILE_NAME ]; then

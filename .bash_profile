@@ -6,10 +6,10 @@ alias ls='ls -aF'
 alias sl='ls'
 
 # svm settings
-DOTFILE_DIR=`readlink ${HOME}/.bash_profile| sed -e 's/\/\.bash_profile//'`
+DOTFILE_DIR=`readlink "${HOME}"/.bash_profile| sed -e 's/\/\.bash_profile//'`
 PATH="${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/sbt-extras:${DOTFILE_DIR}/svm:${PATH}"
 export PATH
-export SCALA_HOME=${HOME}/.svm/current/rt
+export SCALA_HOME="${HOME}"/.svm/current/rt
 
 alias gitsshm="source $DOTFILE_DIR/gitsshm"
 
@@ -21,8 +21,8 @@ if [ -f /usr/local/bin/brew ]; then
   fi
 fi
 # .bash_completion in HOME
-if [ -f $HOME/.bash_completion ]; then
-  . $HOME/.bash_completion
+if [ -f "$HOME/.bash_completion" ]; then
+  . "$HOME/.bash_completion"
 fi
 # git completion and prompt settings
 if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
@@ -41,8 +41,8 @@ if [ -f /Applications/MacVim.app ]; then
    alias vim='env LANG=ja_jp.utf-8 /Applications/Mail.app/Contents/MacOS/Vim "$@"'
 fi
 ## source .bash_profile.mine ##
-if [ -f $HOME/.bash_profile.mine ]; then
-    source $HOME/.bash_profile.mine
+if [ -f "$HOME/.bash_profile.mine" ]; then
+    source "$HOME/.bash_profile.mine"
 fi
 
 

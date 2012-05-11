@@ -11,17 +11,20 @@ function make_link()
     _tofilename=$2
   fi
   if [ $# -eq 1 -o $# -eq 2 ];then
-    echo "ln -hfs $FROM/$_fromfilename $TO/$_tofilename"
-    ln -hfs $FROM/$_fromfilename $TO/$_tofilename
+    echo "ln -fs ${FROM}/$_fromfilename ${TO}/$_tofilename"
+    ln -fs "${FROM}/$_fromfilename" "${TO}/$_tofilename"
   fi
 }
 
 # スクリプトのある場所
-FROM=$(dirname $0)
+FROM=`dirname $0`
 FROM=`cd $FROM;pwd`
+FROM=`echo $FROM` 
+echo "$FROM"
 
 # リンクを張る場所
-TO=$HOME
+TO=`echo $HOME`
+echo "$TO"
 
 make_link .bash_profile
 make_link .gitignore
