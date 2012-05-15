@@ -27,7 +27,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'rosstimson/scala-vim-support'
 Bundle 'pangloss/vim-erlang'
-
+Bundle 'Markdown'
 
 " ファイルタイプ判定をon
 filetype plugin on
