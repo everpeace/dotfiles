@@ -7,3 +7,6 @@
 [submodule "sbt-extras"]
 	path = sbt-extras
 	url = https://github.com/paulp/sbt-extras.git
+[submodule "gitsshm"]
+	path = gitsshm
+	url = git@github.com:everpeace/gitsshm.git
