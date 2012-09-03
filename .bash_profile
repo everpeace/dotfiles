@@ -45,4 +45,4 @@ if [ -f $HOME/.bash_profile.mine ]; then
     source $HOME/.bash_profile.mine
 fi
 
-
+alias scalaz7='screpl org.scalaz%scalaz-example_2.9.2%7.0.0-M3'
