@@ -1,0 +1,9 @@
+#!/bin/sh
+
+DOTFILE_DIR=`readlink ${HOME}/.bash_profile| sed -e 's/\/\.bash_profile//'`
+SCRIPT_DIR=$(dirname $0)
+SCRIPT_DIR=`cd $SCRIPT_DIR;pwd`
+
+java $CONSCRIPT_OPTS -Xmx1G -jar $DOTFILE_DIR/sbt-extras/lib/sbt-launch.jar @$SCRIPT_DIR/scalas.launchconfig "$@"
+
+

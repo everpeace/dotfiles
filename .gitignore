@@ -29,7 +29,6 @@ samples
 .hsproject
 .dist-scion
 Servers
-bin
 target
 
 # cabal

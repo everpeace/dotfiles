@@ -30,6 +30,7 @@ make_link .vimrc
 make_link .zshrc
 make_link .screenrc
 make_link .Rprofile
+make_link bin
 make_link msmtp/.msmtprc .msmtprc
 make_link msmtp/.certs/ThawtePremiumServerCA.pem .ThawtePremiumServerCA.pem
 
