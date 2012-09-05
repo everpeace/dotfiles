@@ -49,6 +49,6 @@ alias scalaz7='screpl org.scalaz%scalaz-example_2.9.2%7.0.0-M3'
 
 if [ -f /usr/local/Cellar/rbenv/0.3.0/completions/rbenv.bash ]; then
   eval "$(rbenv init -)"
-  source ~/.rbenv/completions/rbenv.bash
+  source /usr/local/Cellar/rbenv/0.3.0/completions/rbenv.bash
 fi
 
