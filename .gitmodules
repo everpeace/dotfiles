@@ -10,3 +10,6 @@
 [submodule "gitsshm"]
 	path = gitsshm
 	url = git@github.com:everpeace/gitsshm.git
+[submodule "todo.txt-cli"]
+	path = todo.txt-cli
+	url = https://github.com/ginatrapani/todo.txt-cli.git
