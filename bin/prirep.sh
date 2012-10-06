@@ -26,7 +26,7 @@ echo "$NUM todo's in priorities."
 SUM=`$TODO -d $CONF list|wc -l`
 SUM=$((SUM-NUM-2))
 if [ $SUM -gt 0 ];then
-  echo "$SUM todos have no priority."
+  echo "$SUM todo's have no priority."
 fi
 
 
