@@ -33,6 +33,7 @@ make_link .Rprofile
 make_link bin
 make_link msmtp/.msmtprc .msmtprc
 make_link msmtp/.certs/ThawtePremiumServerCA.pem .ThawtePremiumServerCA.pem
+make_link .todo.cfg
 
 IFS=:
 GIT=false
