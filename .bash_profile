@@ -14,7 +14,7 @@ export SCALA_HOME=${HOME}/.svm/current/rt
 alias gitsshm="source $DOTFILE_DIR/gitsshm/gitsshm"
 alias t='todo.sh'
 complete -F _todo -o default t
-
+alias te='vi ~/Dropbox/todo/todo.txt'
 
 ## bash_completion ##
 # brew's bash_completion
