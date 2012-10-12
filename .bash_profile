@@ -55,3 +55,6 @@ if [ -f /usr/local/Cellar/rbenv/0.3.0/completions/rbenv.bash ]; then
   source /usr/local/Cellar/rbenv/0.3.0/completions/rbenv.bash
 fi
 
+export TODO_ACTIONS_DIR=$HOME"/.todo.actions.d"
+
+
