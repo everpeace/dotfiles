@@ -111,7 +111,7 @@ function date_view() {
     option=$1
 
     #  Get today
-    today=$(date -d $(date +%Y-%m-%d) +%s)
+    today=$(gdate -d $(gdate +%Y-%m-%d) +%s)
 
     #  For each date show header and the list of todo items
     for date in $DATES ; do
@@ -147,7 +147,7 @@ function date_check() {
     # Assign variables
     threshold=$1
     today=$2
-    _date=$(date -d "$3" +%s)
+    _date=$(gdate -d "$3" +%s)
 
     # Check if the date is valid or not
     # return:
@@ -206,7 +206,7 @@ if [[ "$option" =~ $re ]]; then
     *)
         re="^(date|nodate|future|past)$"
         if [[ ! ( "$option" =~ $re ) ]]; then
-            option=$(date -d $(date -d $option +%Y-%m-%d) +%s)
+            option=$(gdate -d $(gdate -d $option +%Y-%m-%d) +%s)
         fi
 
         date_view $option
