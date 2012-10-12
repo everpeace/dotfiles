@@ -51,12 +51,12 @@ function project_view() {
     echo ""
 
     # Find all projects and sort
-    PROJECTS=$(grep -o '[^  ]*+[^  ]\+' "$TODO_FILE" | grep '^+' | sort -u | sed 's/^+//g')
+    PROJECTS=$(grep -o '[^  ]*+[^  ]\+' "$TODO_FILE" | grep '^+' | sort -u | gsed 's/^+//g')
 
     # For each project show header and the list of todo items
     for project in $PROJECTS; do
         # Use core _list function, does numbering and colouring for us
-        PROJECT_LIST=$(_list "$TODO_FILE" "+$project\b" "$term" | sed 's/\(^+\|\ *+\)[a-zA-Z0-9\{._\-\}]*\ */ /g')
+        PROJECT_LIST=$(_list "$TODO_FILE" "+$project\b" "$term" | gsed 's/\(^+\|\ *+\)[a-zA-Z0-9\{._\-\}]*\ */ /g')
         if [[ -n "${PROJECT_LIST}" ]]; then
             echo "---  $project  ---"
             echo "${PROJECT_LIST}"
@@ -78,12 +78,12 @@ function context_view() {
     echo ""
 
     # Find all contexts and sort
-    CONTEXTS=$(grep -o '[^  ]*@[^  ]\+' "$TODO_FILE" | grep '^@' | sort -u | sed 's/@//g')
+    CONTEXTS=$(grep -o '[^  ]*@[^  ]\+' "$TODO_FILE" | grep '^@' | sort -u | gsed 's/@//g')
 
     # For each context show header and the list of todo items
     for context in $CONTEXTS ; do
         # Use core _list function, does numbering and colouring for us
-        CONTEXT_LIST=$(_list "$TODO_FILE" "@$context\b" "$term" | sed 's/(^@|\ *@)[^[:cntrl:] ]\ */ /g')
+        CONTEXT_LIST=$(_list "$TODO_FILE" "@$context\b" "$term" | gsed 's/(^@|\ *@)[^[:cntrl:] ]\ */ /g')
         if [[ -n "${CONTEXT_LIST}" ]]; then
             echo "---  $context  ---"
             echo "${CONTEXT_LIST}"
@@ -105,7 +105,7 @@ function date_view() {
     echo ""
 
     #  Find all dates and sort
-    DATES=$(grep -o '[^  ]*t:[^  ]\+' "$TODO_FILE" | grep '^t:' | sort -u | sed 's/^t://g')
+    DATES=$(grep -o '[^  ]*t:[^  ]\+' "$TODO_FILE" | grep '^t:' | sort -u | gsed 's/^t://g')
 
     #  Get option
     option=$1
@@ -124,7 +124,7 @@ function date_view() {
         fi
 
         #  Use core _list function, does numbering and colouring for us
-        DATE_LIST=$(_list "$TODO_FILE" "t:$date" "$term" | sed 's/\(^t:\|\ *t:\)[0-9-]*\ */ /g')
+        DATE_LIST=$(_list "$TODO_FILE" "t:$date" "$term" | gsed 's/\(^t:\|\ *t:\)[0-9-]*\ */ /g')
         if [ -n "${DATE_LIST}" ]; then
             echo  "---  $date  ---"
             echo  "${DATE_LIST}"
@@ -213,6 +213,7 @@ if [[ "$option" =~ $re ]]; then
         ;;
     esac
 else
-    echo "Error: Unrecognized option \"$option\"."
-    echo "Try \"todo.sh view help\" to get more information."
+  usage
+#    echo "Error: Unrecognized option \"$option\"."
+#    echo "Try \"todo.sh view help\" to get more information."
 fi
