@@ -33,7 +33,7 @@ case "$option" in
 *)
   date="$PREFIX"`eval "gdate --date='$option' +%Y-%m-%d"`
 esac
-echo "$date"
+
 if [[ "$item" =~ [0-9]* ]]; then
   target=`awk "NR==$item" "$TODO_FILE"| sed 's/^([A-Z]) //g'`
   if [[ $target =~ .*$PREFIX[0-9]{4}-[0-9]{2}-[0-9]{2}.* ]]; then
