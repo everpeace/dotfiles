@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# date prefix
+PREFIX="t:"
+
+action=$1
+shift
+[ "$action" = "usage" ] && {
+  echo "  Set date to task:"
+  echo "    date [option] item"
+  echo "    OPTION:"
+  echo "      yyyy-mm-dd : set the date to the given item"
+  echo "      today      : set today to the given item"
+  echo "      tomorrow   : set tomorrow to the given item"
+  echo "      ?length    : set the calculated date to the given item"
+  echo "                   ? could be signed(+-) or unsigned numbers."
+  echo "                   Length could be (days|weeks|months|years)"
+  echo "      delete     : unset date from the given item"
+  echo ""
+  exit 0
+}
+
+option=$1
+item=$2
+
+case "$option" in
+"delete")
+  date="";;
+"today")
+  date="$PREFIX"`gdate +%Y-%m-%d`;;
+"tomorrow")
+  date="$PREFIX"`gdate --date='+1 day' +%Y-%m-%d`;;
+*)
+  date="$PREFIX"`eval "gdate --date='$option' +%Y-%m-%d"`
+esac
+echo "$date"
+if [[ "$item" =~ [0-9]* ]]; then
+  target=`awk "NR==$item" "$TODO_FILE"| sed 's/^([A-Z]) //g'`
+  if [[ $target =~ .*$PREFIX[0-9]{4}-[0-9]{2}-[0-9]{2}.* ]]; then
+    modified=`eval "echo \"$target\"|sed 's/^\(.*\)$PREFIX[0-9]*-[0-9]*-[0-9]*\(.*\)/\1$date\2/g'"`
+    $TODO_SH replace $item "$modified"
+  else
+    target=`echo "$target"|sed 's/ *$//g'`
+    $TODO_SH replace $item "$target $date"
+  fi
+fi
+
