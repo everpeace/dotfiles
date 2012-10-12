@@ -4,6 +4,7 @@ export PS1="\h:\W \u$ "
 
 alias ls='ls -aF'
 alias sl='ls'
+alias less='less -R'
 
 # svm settings
 DOTFILE_DIR=`readlink ${HOME}/.bash_profile| sed -e 's/\/\.bash_profile//'`
