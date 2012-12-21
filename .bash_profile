@@ -1,10 +1,10 @@
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
+export LESS="-R"
 export PS1="\h:\W \u$ "
 
 alias ls='ls -aF'
 alias sl='ls'
-alias less='less -R'
 
 # svm settings
 DOTFILE_DIR=`readlink ${HOME}/.bash_profile| sed -e 's/\/\.bash_profile//'`
@@ -17,11 +17,14 @@ alias t='todo.sh'
 complete -F _todo -o default t
 alias te='vi ~/Dropbox/todo/todo.txt'
 
-## bash_completion ##
-# brew's bash_completion
+## bash_completion and source-highlight##
+# brew's bash_completion and source-hightlight
 if [ -f /usr/local/bin/brew ]; then
   if [ -f `/usr/local/bin/brew --prefix`/etc/bash_completion ]; then
          . `/usr/local/bin/brew --prefix`/etc/bash_completion
+  fi
+  if [ -f `/usr/local/bin/brew --prefix`/bin/src-hilite-lesspipe.sh ]; then
+         export LESSOPEN="| `/usr/local/bin/brew --prefix`/bin/src-hilite-lesspipe.sh %s"
   fi
 fi
 # .bash_completion in HOME
