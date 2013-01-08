@@ -35,6 +35,7 @@ make_link msmtp/.msmtprc .msmtprc
 make_link msmtp/.certs/ThawtePremiumServerCA.pem .ThawtePremiumServerCA.pem
 make_link .todo.cfg
 make_link .todo.actions.d
+make_link .tmux.conf
 
 IFS=:
 GIT=false
