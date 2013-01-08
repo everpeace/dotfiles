@@ -26,6 +26,7 @@ if [ -f /usr/local/bin/brew ]; then
   if [ -f `/usr/local/bin/brew --prefix`/bin/src-hilite-lesspipe.sh ]; then
          export LESSOPEN="| `/usr/local/bin/brew --prefix`/bin/src-hilite-lesspipe.sh %s"
   fi
+  [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 fi
 # .bash_completion in HOME
 if [ -f $HOME/.bash_completion ]; then
