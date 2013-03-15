@@ -126,7 +126,8 @@ function date_view() {
         #  Use core _list function, does numbering and colouring for us
         DATE_LIST=$(_list "$TODO_FILE" "t:$date" "$term" | gsed 's/\(^t:\|\ *t:\)[0-9-]*\ */ /g')
         if [ -n "${DATE_LIST}" ]; then
-            echo  "---  $date  ---"
+            diff=$(echo "$(gdate -d$date +%j)-$(gdate +%j)" |bc)
+            echo  "---  $date ($diff days)  ---"
             echo  "${DATE_LIST}"
             echo  ""
         fi
