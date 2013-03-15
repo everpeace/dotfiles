@@ -8,7 +8,7 @@ alias sl='ls'
 
 # svm settings
 DOTFILE_DIR=`readlink ${HOME}/.bash_profile| sed -e 's/\/\.bash_profile//'`
-PATH="${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/sbt-extras:${DOTFILE_DIR}/svm:${HOME}/bin:${PATH}"
+PATH="${HOME}/.cabal/bin:${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/sbt-extras:${DOTFILE_DIR}/svm:${HOME}/bin:${PATH}"
 export PATH
 export SCALA_HOME=${HOME}/.svm/current/rt
 
