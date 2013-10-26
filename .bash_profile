@@ -42,11 +42,12 @@ if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
 else
   export PS1="\\n[\\w]\\n\\u@\h $ "
 fi
+
 # Vim
-if [ -f /Applications/MacVim.app ]; then
-  export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-   alias vi='env LANG=ja_jp.utf-8 /Applications/Mail.app/Contents/MacOS/Vim "$@"'
-   alias vim='env LANG=ja_jp.utf-8 /Applications/Mail.app/Contents/MacOS/Vim "$@"'
+if [ -e /Applications/MacVim.app ]; then
+  export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"
+  alias vi='env LANG=ja_jp.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+  alias vim='env LANG=ja_jp.utf-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 fi
 ## source .bash_profile.mine ##
 if [ -f $HOME/.bash_profile.mine ]; then
@@ -55,10 +56,10 @@ fi
 
 alias scalaz7='screpl org.scalaz%scalaz-example_2.9.2%7.0.0-M3'
 
-if [ -f /usr/local/Cellar/rbenv/0.3.0/completions/rbenv.bash ]; then
+ if which rbenv > /dev/null; then
   eval "$(rbenv init -)"
-  source /usr/local/Cellar/rbenv/0.3.0/completions/rbenv.bash
-fi
+  source /usr/local/Cellar/rbenv/`brew list --versions rbenv|cut -d ' ' -f2 `/completions/rbenv.bash
+ fi
 
 export TODO_ACTIONS_DIR=$HOME"/.todo.actions.d"
 
