@@ -24,7 +24,7 @@ FROM=`cd $FROM;pwd`
 TO=$HOME
 
 make_link .bash_profile
-make_link .gitignore
+# make_link .gitignore
 make_link .vim
 make_link .vimrc
 make_link .zshrc

@@ -17,7 +17,7 @@
   sslVerify = false
 [alias]
   tr = log --graph --pretty='format:%C(yellow)%h[%cr%Creset] %s %Cgreen(%an)%Creset %Cred%d%Creset'
-
+  st = status --ignored
 [sendemail]
 	smtpencryption = tls
 	smtpserver = /usr/local/bin/msmtp
