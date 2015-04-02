@@ -102,6 +102,8 @@ if [ -f /usr/local/bin/brew ]; then
     fi
   fi
 
+  if is_installed lnav; then export LNAV_EXP="mouse"; fi
+
 fi
 
 ## source .bash_profile.mine ##
