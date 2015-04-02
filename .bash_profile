@@ -19,12 +19,6 @@ export SCALA_HOME=${HOME}/.svm/current/rt
 # gitsshm
 alias gitsshm="source ${DOTFILE_DIR}/gitsshm/gitsshm"
 
-# todo.sh
-export TODO_ACTIONS_DIR=${HOME}"/.todo.actions.d"
-alias t='todo.sh'
-complete -F _todo -o default t
-alias te='vi ~/Dropbox/todo/todo.txt'
-
 export GOROOT=$(brew --prefix)/opt/go/libexec
 export GOPATH=/Users/shingo/go/1.3
 export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
@@ -49,12 +43,19 @@ if [ -f /usr/local/bin/brew ]; then
     fi
   }
 
-  if is_installed bash_completion; then
+  if is_installed bash-completion; then
     source "$(brew --prefix)/etc/bash_completion"
   fi
 
   if is_installed source-highlight; then
     export LESSOPEN="| $(brew --prefix)/bin/src-hilite-lesspipe.sh %s"
+  fi
+
+  if is_installed todo-txt; then
+    alias t='LC_ALL=C todo.sh'
+    complete -F _todo -o default t
+    alias te='vi ~/Dropbox/todo/todo.txt'
+    export TODO_ACTIONS_DIR=${HOME}"/.todo.actions.d"
   fi
 
   if is_installed autojump; then
