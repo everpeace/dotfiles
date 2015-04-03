@@ -36,7 +36,7 @@ make_link msmtp/.certs/ThawtePremiumServerCA.pem .ThawtePremiumServerCA.pem
 make_link .todo.cfg
 make_link .todo.actions.d
 make_link .tmux.conf
-make_link .macbook-provisioning
+make_link .mac-provisioning
 
 IFS=:
 GIT=false
