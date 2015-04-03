@@ -1,4 +1,4 @@
-#/bin/bash
+#! /bin/bash
 
 function make_link()
 {
@@ -11,14 +11,14 @@ function make_link()
     _tofilename=$2
   fi
   if [ $# -eq 1 -o $# -eq 2 ];then
-    echo "ln -hfs $FROM/$_fromfilename $TO/$_tofilename"
-    ln -hfs $FROM/$_fromfilename $TO/$_tofilename
+    echo "ln -hfs" "$FROM/$_fromfilename" "$TO/$_tofilename"
+    ln -hfs "$FROM/$_fromfilename" "$TO/$_tofilename"
   fi
 }
 
 # スクリプトのある場所
-FROM=$(dirname $0)
-FROM=`cd $FROM;pwd`
+FROM=$(dirname "$0")
+FROM=$(cd "$FROM"; pwd)
 
 # リンクを張る場所
 TO=$HOME
@@ -36,11 +36,12 @@ make_link msmtp/.certs/ThawtePremiumServerCA.pem .ThawtePremiumServerCA.pem
 make_link .todo.cfg
 make_link .todo.actions.d
 make_link .tmux.conf
+make_link .macbook-provisioning
 
 IFS=:
 GIT=false
 for d in $PATH
-do test -x $d/git && GIT=true
+do test -x "$d/git" && GIT=true
 done
 if $GIT
 then
@@ -51,4 +52,3 @@ then
   make_link .gitconfig
 else echo "no git"
 fi
-

@@ -1,0 +1,159 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  sudo: no
+  roles:
+    - homebrew
+    - homebrew-cask
+    - Ricty
+  vars:
+    # Taps
+    #
+    # e.g.
+    # - homebrew/binary
+    homebrew_taps:
+      - caskroom/cask
+      - homebrew/binary
+      - homebrew/boneyard
+      - homebrew/completions
+      - homebrew/science
+      - homebrew/versions
+      - peco/peco
+
+    # Homebrew packages
+    #
+    # e.g.
+    # - package_name
+    # or
+    # { name: package_name, state: package_state, install_options: [with-baz, enable-debug] }
+    #
+    # state choices: [head, latest, present, absent, linked, unlinked] (default: latest)
+    # install_options: string or sequence (default: none)
+    homebrew_packages:
+      - { name: python }
+      - { name: ansible }
+      - { name: ack }
+      - { name: ant }
+      - { name: autoconf }
+      - { name: autojump }
+      - { name: automake }
+      - { name: automake112 }
+      - { name: awscli }
+      - { name: bash-completion }
+      - { name: bash-git-prompt }
+      - { name: boot2docker }
+      - { name: cabal-install }
+      - { name: clojure }
+      - { name: cmake }
+      - { name: connect }
+      - { name: convmv }
+      - { name: coreutils }
+      - { name: ctags }
+      - { name: darcs }
+      - { name: docker }
+      - { name: docker-completion }
+      - { name: docker-machine }
+      - { name: docker-swarm }
+      - { name: elixir }
+      - { name: emacs }
+      - { name: erlang }
+      - { name: findutils }
+      - { name: gcc }
+      - { name: gcutil }
+      - { name: gdbm }
+      - { name: gettext }
+      - { name: gflags }
+      - { name: ghc }
+      - { name: git }
+      - { name: git-crypt }
+      - { name: giter8 }
+      - { name: gnu-sed }
+      - { name: gnutls }
+      - { name: go }
+      - { name: gradle }
+      - { name: graphviz }
+      - { name: hub }
+      - { name: lnav }
+      - { name: lua }
+      - { name: markdown }
+      - { name: maven }
+      - { name: mercurial }
+      - { name: mobile-shell }
+      - { name: mysql }
+      - { name: nkf }
+      - { name: node }
+      - { name: nvm }
+      - { name: openssl }
+      - { name: packer }
+      - { name: packer-completion }
+      - { name: peco }
+      - { name: pkg-config }
+      - { name: pstree }
+      - { name: pyenv }
+      - { name: pyenv-virtualenv }
+      - { name: python3 }
+      - { name: rbenv }
+      - { name: readline }
+      - { name: reattach-to-user-namespace }
+      - { name: rebar }
+      - { name: ruby-build }
+      - { name: s3cmd }
+      - { name: sbt }
+      - { name: shellcheck }
+      - { name: source-highlight }
+      - { name: subversion }
+      - { name: subversion17, install-option: unicode-path }
+      - { name: tig }
+      - { name: tmux }
+      - { name: todo-txt }
+      - { name: tree }
+      - { name: typesafe-activator }
+      - { name: vagrant-completion }
+      - { name: vim }
+      - { name: weechat }
+      - { name: wget }
+
+
+    # Taps for Casks
+    homebrew_cask_taps:
+
+    # Homebrew Cask packages.
+    #
+    # e.g.
+    # - package_name
+    # or
+    # { name: package_name, state: package_state }
+    #
+    # state choices: [present, absent, installed, uninstalled] (default: present)
+    homebrew_cask_packages:
+      - { name: alfred }
+      - { name: atom }
+      - { name: bertender }
+      - { name: dash }
+      - { name: firefox }
+      - { name: google-chrome }
+      - { name: intellij-idea }
+      - { name: iterm2 }
+      - { name: java }
+      - { name: skype }
+      - { name: sourcetree }
+      - { name: vagrant }
+      - { name: virtualbox }
+
+  tasks:
+    # Ricty font
+    - name: xquartz のインストール (for Ricty)
+      homebrew_cask: name=xquartz
+    - name: fontforge のインストール (for Ricty)
+      homebrew: name=fontforge
+    - name: Ricty のインストール
+      homebrew: name=ricty
+    - name: 生成されたフォントファイルをコピー
+      shell: cp -f $(brew --cellar ricty)/*/share/fonts/Ricty*.ttf ~/Library/Fonts/
+      args:
+        creates: ~/Library/Fonts/Ricty-Bold.ttf
+      notify: run fc-cache
+
+  handlers:
+    - name: run fc-cache
+      shell: fc-cache -vf

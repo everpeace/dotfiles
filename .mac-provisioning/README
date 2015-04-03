@@ -1,0 +1,14 @@
+ REFERENCE: http://t-wada.hatenablog.jp/entry/mac-provisioning-by-ansible
+            http://mawatari.jp/archives/mac-provisioning-by-homebrew-and-ansible
+            https://github.com/mawatari/mac-provisioning
+
+ INSTRUCTION:
+    0. install dropbox and deploy dotfiles with setup.sh.
+    1. run belows:
+      $ sudo xcodebuild -license
+      $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      $ brew update
+      $ brew install ansible
+    2. play this playbook
+      $ cd *here*
+      $ ansible-playbook -i hosts -vv localhost.yml
