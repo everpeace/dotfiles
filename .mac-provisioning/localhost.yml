@@ -131,6 +131,7 @@
       - { name: bertender }
       - { name: dash }
       - { name: firefox }
+      - { name: flux }
       - { name: google-chrome }
       - { name: intellij-idea }
       - { name: iterm2 }
