@@ -11,4 +11,4 @@
       $ brew install ansible
     2. play this playbook
       $ cd *here*
-      $ ansible-playbook -i hosts -vv localhost.yml
+      $ HOMEBREW_CASK_OPTS="--appdir=/Applications" ansible-playbook -i hosts -vv localhost.yml
