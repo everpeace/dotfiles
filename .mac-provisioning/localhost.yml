@@ -129,12 +129,14 @@
       - { name: atom }
       - { name: bertender }
       - { name: dash }
+      - { name: evernote }
       - { name: firefox }
       - { name: flux }
       - { name: google-chrome }
       - { name: intellij-idea-ce }
       - { name: iterm2 }
       - { name: java }
+      - { name: skitch }
       - { name: skype }
       - { name: sourcetree }
       - { name: vagrant }
