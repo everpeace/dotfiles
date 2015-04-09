@@ -5,7 +5,6 @@
   roles:
     - homebrew
     - homebrew-cask
-    - Ricty
   vars:
     # Taps
     #
