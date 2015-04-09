@@ -133,7 +133,7 @@
       - { name: firefox }
       - { name: flux }
       - { name: google-chrome }
-      - { name: intellij-idea }
+      - { name: intellij-idea-ce }
       - { name: iterm2 }
       - { name: java }
       - { name: skype }
