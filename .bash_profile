@@ -33,6 +33,7 @@ if [ -e /Developer/NVIDIA/CUDA-6.5 ]; then
 fi
 
 # configuration for packages installed by Homebrew
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 if [ -f /usr/local/bin/brew ]; then
 
   is_installed(){
