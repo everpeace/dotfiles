@@ -125,7 +125,7 @@
     #
     # state choices: [present, absent, installed, uninstalled] (default: present)
     homebrew_cask_packages:
-      - { name: alfred }
+      # - { name: alfred } no need this since alfred v 2.6
       - { name: atom }
       - { name: bertender }
       - { name: dash }
