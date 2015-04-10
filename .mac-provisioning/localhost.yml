@@ -115,6 +115,8 @@
 
     # Taps for Casks
     homebrew_cask_taps:
+      - caskroom/versions
+      - caskroom/fonts
 
     # Homebrew Cask packages.
     #
@@ -136,26 +138,9 @@
       - { name: intellij-idea-ce }
       - { name: iterm2 }
       - { name: java }
+      - { name: font-ricty-diminished }
       - { name: skitch }
       - { name: skype }
       - { name: sourcetree }
       - { name: vagrant }
       - { name: virtualbox }
-
-  tasks:
-    # Ricty font
-    - name: xquartz のインストール (for Ricty)
-      homebrew_cask: name=xquartz
-    - name: fontforge のインストール (for Ricty)
-      homebrew: name=fontforge
-    - name: Ricty のインストール
-      homebrew: name=ricty
-    - name: 生成されたフォントファイルをコピー
-      shell: cp -f $(brew --cellar ricty)/*/share/fonts/Ricty*.ttf ~/Library/Fonts/
-      args:
-        creates: ~/Library/Fonts/Ricty-Bold.ttf
-      notify: run fc-cache
-
-  handlers:
-    - name: run fc-cache
-      shell: fc-cache -vf
