@@ -10,7 +10,7 @@ alias sl='ls'
 alias scalaz7='screpl org.scalaz%scalaz-example_2.11.0%7.1.0.RC1'
 
 DOTFILE_DIR="$(readlink "${HOME}/.bash_profile" | sed -e 's/\/\.bash_profile//')"
-PATH="${HOME}/.pyenv/shims:${HOME}/.cabal/bin:${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/svm:${HOME}/bin:${PATH}":/usr/local/bin
+PATH="${HOME}/.pyenv/shims:${HOME}/.cabal/bin:${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/svm:${HOME}/bin:${PATH}":/usr/local/sbin:/usr/local/bin
 export PATH
 
 # svm settings
