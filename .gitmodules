@@ -9,5 +9,5 @@
 	url = https://github.com/paulp/sbt-extras.git
 [submodule "gitsshm"]
 	path = gitsshm
-	url = https://github.com:everpeace/gitsshm.git
+	url = https://github.com/everpeace/gitsshm.git
 
