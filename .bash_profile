@@ -96,12 +96,13 @@ if [ -f /usr/local/bin/brew ]; then
   if is_installed pyenv; then eval "$(pyenv init -)"; fi
   if is_installed pyenv-virtualenv; then eval "$(pyenv virtualenv-init -)"; fi
 
-  if is_installed boot2docker; then
-    boot2dockerstatus=$(boot2docker status 2>/dev/null || echo "x")
-    if [ "running" == "${boot2dockerstatus}" ]; then
-      export DOCKER_HOST=tcp://$(boot2docker --verbose=false ip):2375
-    fi
-  fi
+  # Deprecated: use docker-machine
+  # if is_installed boot2docker; then
+  #   boot2dockerstatus=$(boot2docker status 2>/dev/null || echo "x")
+  #   if [ "running" == "${boot2dockerstatus}" ]; then
+  #     export DOCKER_HOST=tcp://$(boot2docker --verbose=false ip):2375
+  #   fi
+  # fi
 
   if is_installed lnav; then export LNAV_EXP="mouse"; fi
 
