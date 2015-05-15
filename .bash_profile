@@ -108,6 +108,24 @@ if [ -f /usr/local/bin/brew ]; then
 
 fi
 
+## gp* : ghq + ghs + peco utilities
+function gpi(){
+  [ "$#" -eq 0 ] && echo "Usage : gpi QUERY" && return 1
+  ghs "$@" | peco | awk '{print $1}' | ghq import
+}
+
+function gpr(){
+  [ "$#" -eq 0 ] && echo "Usage : gpi QUERY" && return 1
+  ghq list -p "$@" | peco | xargs rm -r
+}
+
+function gpcd(){
+  [ "$#" -eq 0 ] && echo "Usage : gpcd QUERY" && return 1
+  local full_path
+  full_path=$(ghq list -p -e "$(ghq list "$@" | peco | awk '{print $1}')")
+  cd "$full_path"
+}
+
 ## source .bash_profile.mine ##
 if [ -e "${HOME}/.bash_profile.mine" ]; then
   source "${HOME}/.bash_profile.mine"
