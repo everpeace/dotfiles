@@ -133,6 +133,7 @@
       - { name: atom }
       - { name: bertender }
       - { name: dash }
+      - { name: dropbox }
       - { name: evernote }
       - { name: firefox }
       - { name: flux }
