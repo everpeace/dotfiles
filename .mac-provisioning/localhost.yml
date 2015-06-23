@@ -3,8 +3,8 @@
   gather_facts: no
   sudo: no
   roles:
-    - homebrew
     - homebrew-cask
+    - homebrew
   vars:
     # Taps
     #
@@ -18,6 +18,7 @@
       - homebrew/science
       - homebrew/versions
       - peco/peco
+      - sona-tar/tools
 
     # Homebrew packages
     #
@@ -42,9 +43,8 @@
       - { name: bash-git-prompt }
       - { name: boot2docker }
       - { name: cabal-install }
-      - { name: clojure }
       - { name: cmake }
-      - { name: connect }
+    #      - { name: connect }
       - { name: convmv }
       - { name: coreutils }
       - { name: ctags }
@@ -64,6 +64,7 @@
       - { name: gflags }
       - { name: ghc }
       - { name: ghq }
+      - { name: ghs }
       - { name: git }
       - { name: git-crypt }
       - { name: giter8 }
@@ -73,6 +74,7 @@
       - { name: gradle }
       - { name: graphviz }
       - { name: hub }
+      - { name: leiningen }
       - { name: lnav }
       - { name: lua }
       - { name: markdown }
@@ -103,7 +105,7 @@
       - { name: shellcheck }
       - { name: source-highlight }
       - { name: subversion }
-      - { name: subversion17, install-option: unicode-path }
+      - { name: subversion17, install-option: with-unicode-path }
       - { name: tig }
       - { name: tmux }
       - { name: tree }
@@ -112,7 +114,6 @@
       - { name: vim }
       - { name: weechat }
       - { name: wget }
-
 
     # Taps for Casks
     homebrew_cask_taps:
@@ -128,22 +129,34 @@
     #
     # state choices: [present, absent, installed, uninstalled] (default: present)
     homebrew_cask_packages:
-      # - { name: alfred } no need this since alfred v 2.6
+      - { name: alfred } # no need this since alfred v 2.6
       - { name: 1password }
+      - { name: appcleaner }
       - { name: atom }
-      - { name: bertender }
+      - { name: bartender }
       - { name: dash }
       - { name: dropbox }
       - { name: evernote }
       - { name: firefox }
       - { name: flux }
+      - { name: font-ricty-diminished }
+      - { name: geektool }
+      - { name: gitter }
       - { name: google-chrome }
       - { name: intellij-idea-ce }
+      - { name: istat-menus }
       - { name: iterm2 }
       - { name: java }
-      - { name: font-ricty-diminished }
+      - { name: kindle }
+      - { name: macwinzipper }
+      - { name: send-to-kindle }
+      - { name: shiftit }
       - { name: skitch }
       - { name: skype }
       - { name: sourcetree }
+      - { name: spotify }
+      - { name: teleport }
+      - { name: todoist }
       - { name: vagrant }
       - { name: virtualbox }
+
