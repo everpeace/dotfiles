@@ -67,6 +67,7 @@
       - { name: ghs }
       - { name: git }
       - { name: git-crypt }
+      - { name: git-flow }
       - { name: giter8 }
       - { name: gnu-sed }
       - { name: gnutls }
@@ -142,6 +143,7 @@
       - { name: font-ricty-diminished }
       - { name: geektool }
       - { name: gitter }
+      - { name: github }
       - { name: google-chrome }
       - { name: intellij-idea-ce }
       - { name: istat-menus }
