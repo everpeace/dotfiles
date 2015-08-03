@@ -20,7 +20,7 @@ export SCALA_HOME=${HOME}/.svm/current/rt
 alias gitsshm="source ${DOTFILE_DIR}/gitsshm/gitsshm"
 
 export GOROOT=$(brew --prefix)/opt/go/libexec
-export GOPATH=/Users/shingo/go/1.3
+export GOPATH=/Users/omura/go/1.3
 export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
 
 if [ -e /opt/chefdk/bin ]; then
