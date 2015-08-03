@@ -24,3 +24,5 @@
 	smtpuser = everpeace@gmail.com
 	smtpserverport = 587
 	chainreplyto = false
+[remote "origin"]
+	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
