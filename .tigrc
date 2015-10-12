@@ -1,16 +1,18 @@
 ########
 # view settings
 ########
+set mouse = true
 # main viewの左端にコミットIDを表示する
-set main-view = id date author commit-title:graph=yes,refs=yes
+set main-view = id date:short author commit-title:graph=yes,refs=yes
 # refs viewの左端にコミットIDを表示する
 set refs-view = id date author ref commit-title
+set blob-view = line-number:yes,interval=1 text
 
 # 画面を垂直方向に分割する
 set vertical-split = yes
 
 # 垂直分割したウィンドウの下画面サイズを % で指定（行数指定も可）
-set split-view-width = 80%
+set split-view-width = 75%
 
 # 差分の前後の表示行数（diff-context)を指定
 set diff-context = 6
