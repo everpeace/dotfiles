@@ -37,6 +37,7 @@ make_link .todo.cfg
 make_link .todo.actions.d
 make_link .tmux.conf
 make_link .mac-provisioning
+make_link .tigrc
 
 IFS=:
 GIT=false

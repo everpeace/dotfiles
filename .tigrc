@@ -1,0 +1,50 @@
+########
+# view settings
+########
+# main viewの左端にコミットIDを表示する
+set main-view = id date author commit-title:graph=yes,refs=yes
+
+# 画面を垂直方向に分割する
+set vertical-split = yes
+
+# 垂直分割したウィンドウの下画面サイズを % で指定（行数指定も可）
+set split-view-width = 80%
+
+# 差分の前後の表示行数（diff-context)を指定
+set diff-context = 6
+
+########
+# generic key binds
+########
+bind generic G none
+bind generic <ESC> view-help
+bind generic <Ctrl-f>  move-page-down
+bind generic <Ctrl-b>  move-page-up
+bind generic <Up> move-up
+bind generic <Down> move-down
+
+########
+# main view key binds
+########
+bind main F !git fetch --all
+bind main p !?git pull "%(prompt Enter remote name: )" --rebase
+bind main P !?git push "%(prompt Enter remote name: )"
+bind main R !git rebase -i %(commit)
+bind main C !git checkout %(commit)
+bind main T !?git tag "%(prompt Enter new tag name: )"
+
+########
+# refs view
+########
+# C for checkout
+bind refs f !git fetch --all
+bind refs T !git checkout -t %(branch)
+bind refs p !?git pull "%(prompt Enter remote name: )" %(branch) --rebase
+bind refs P !?git push "%(prompt Enter remote name: )" %(branch)
+bind refs r !git rebase -i %(branch)
+
+# カーソル行のブランチを親にして入力した名前のブランチを作成
+bind refs n !?git checkout -b "%(prompt Enter new branch name: )" %(branch)
+# 不要になったブランチを削除
+bind refs D !?git branch -D %(branch)
+bind refs d !?git branch -d %(branch)
