@@ -11,12 +11,17 @@
     # e.g.
     # - homebrew/binary
     homebrew_taps:
-      - caskroom/cask
+      - atlassian/tap
       - homebrew/binary
       - homebrew/boneyard
       - homebrew/completions
+      - homebrew/core
+      - homebrew/python
       - homebrew/science
       - homebrew/versions
+      - ishkawa/formulae
+      - mackerelio/mackerel-agent
+      - motemen/motemen
       - peco/peco
       - sona-tar/tools
 
@@ -30,91 +35,185 @@
     # state choices: [head, latest, present, absent, linked, unlinked] (default: latest)
     # install_options: string or sequence (default: none)
     homebrew_packages:
-      - { name: python }
-      - { name: ansible }
-      - { name: ack }
-      - { name: ant }
-      - { name: autoconf }
-      - { name: autojump }
-      - { name: automake }
-      - { name: automake112 }
-      - { name: awscli }
-      - { name: bash-completion }
-      - { name: bash-git-prompt }
-      - { name: boot2docker }
-      - { name: cabal-install }
-      - { name: cmake }
-    #      - { name: connect }
-      - { name: convmv }
-      - { name: coreutils }
-      - { name: ctags }
-      - { name: darcs }
-      - { name: docker }
-      - { name: docker-completion }
-      - { name: docker-machine }
-      - { name: docker-swarm }
-      - { name: elixir }
-      - { name: emacs }
-      - { name: erlang }
-      - { name: findutils }
-      - { name: gcc }
-      - { name: gcutil }
-      - { name: gdbm }
-      - { name: gettext }
-      - { name: gflags }
-      - { name: ghc }
-      - { name: ghq }
-      - { name: ghs }
-      - { name: git }
-      - { name: git-crypt }
-      - { name: git-flow }
-      - { name: giter8 }
-      - { name: gnu-sed }
-      - { name: gnutls }
-      - { name: go }
-      - { name: gradle }
-      - { name: graphviz }
-      - { name: hub }
-      - { name: leiningen }
-      - { name: lnav }
-      - { name: lua }
-      - { name: markdown }
-      - { name: maven }
-      - { name: mercurial }
-      - { name: mobile-shell }
-      - { name: mysql }
-      - { name: nkf }
-      - { name: node }
-      - { name: nvm }
-      - { name: openssl }
-      - { name: packer }
-      - { name: packer-completion }
-      - { name: peco }
-      - { name: pkg-config }
-      - { name: pstree }
-      - { name: pyenv }
-      - { name: pyenv-virtualenv }
-      - { name: python3 }
-      - { name: rbenv }
-      - { name: readline }
-      - { name: reattach-to-user-namespace }
-      - { name: rebar }
-      - { name: ruby-build }
-      - { name: s3cmd }
-      - { name: scala }
-      - { name: sbt }
-      - { name: shellcheck }
-      - { name: source-highlight }
-      - { name: subversion }
-      - { name: subversion17, install-option: with-unicode-path }
-      - { name: tig }
-      - { name: tmux }
-      - { name: tree }
-      - { name: typesafe-activator }
-      - { name: vagrant-completion }
-      - { name: vim }
-      - { name: weechat }
-      - { name: wget }
+      - name: ack
+      - name: amazon-ecs-cli
+      - name: ansible
+      - name: ansible19
+      - name: ant
+      - name: asciidoc
+      - name: autoconf
+      - name: autojump
+      - name: automake
+      - name: automake112
+      - name: aws-elasticbeanstalk
+      - name: aws-shell
+      - name: awscli
+      - name: bash-completion
+      - name: bash-git-prompt
+      - name: boost
+      - name: boot2docker
+      - name: cabal-install
+      - name: cairo
+      - name: cmake
+      - name: convmv
+      - name: coreutils
+      - name: ctags
+      - name: curl
+      - name: darcs
+      - name: direnv
+      - name: docbook
+      - name: docker
+      - name: docker-completion
+      - name: docker-compose
+      - name: docker-machine
+      - name: docker-swarm
+      - name: dvm
+      - name: eigen
+      - name: elixir
+      - name: emacs
+      - name: emscripten
+      - name: erlang
+      - name: etcd
+      - name: ffmpeg
+      - name: findutils
+      - name: flyway
+      - name: fontconfig
+      - name: forego
+      - name: freetype
+      - name: gcc
+      - name: gcutil
+      - name: gdbm
+      - name: gettext
+      - name: gflags
+      - name: ghc
+      - name: ghq
+      - name: ghs
+      - name: git
+      - name: git-crypt
+      - name: git-flow
+      - name: giter8
+      - name: glib
+      - name: glide
+      - name: glpk
+      - name: gmp
+      - name: gnu-sed
+      - name: gnutls
+      - name: go
+      - name: gradle
+      - name: graphviz
+      - name: h2
+      - name: hub
+      - name: iftop
+      - name: ilmbase
+      - name: isl
+      - name: jpeg
+      - name: jq
+      - name: jsawk
+      - name: jsvc
+      - name: lame
+      - name: lastpass-cli
+        install-option: [with-pinentry, with-docs]
+      - name: leiningen
+      - name: lgtm.sh
+      - name: libassuan
+      - name: libevent
+      - name: libffi
+      - name: libgcrypt
+      - name: libgpg-error
+      - name: libmpc
+      - name: libpng
+      - name: libressl
+      - name: libsass
+      - name: libtasn1
+      - name: libtiff
+      - name: libtool
+      - name: libyaml
+      - name: llvm
+      - name: lnav
+      - name: lp_solve
+      - name: ls2xs
+      - name: lua
+      - name: markdown
+      - name: maven
+      - name: mecab
+      - name: mecab-ipadic
+      - name: memcached
+      - name: mercurial
+      - name: mobile-shell
+      - name: mpfr
+      - name: mtr
+      - name: mysql
+      - name: nettle
+      - name: nkf
+      - name: node
+      - name: nspr
+      - name: numpy
+      - name: nvm
+      - name: oniguruma
+      - name: opencv
+      - name: openexr
+      - name: openssl
+      - name: packer
+      - name: packer-completion
+      - name: parallel
+      - name: pcre
+      - name: pcre2
+      - name: peco
+      - name: perl
+      - name: pinentry
+      - name: pixman
+      - name: pkg-config
+      - name: ponyc
+      - name: portmidi
+      - name: protobuf
+      - name: pstree
+      - name: pup
+      - name: pyenv
+      - name: pyenv-virtualenv
+      - name: pygame
+      - name: python
+      - name: python3
+      - name: r
+      - name: rbenv
+      - name: readline
+      - name: reattach-to-user-namespace
+      - name: rebar
+      - name: ruby
+      - name: ruby-build
+      - name: s3cmd
+      - name: sbt
+      - name: scala
+      - name: sdl
+      - name: sdl_image
+      - name: sdl_mixer
+      - name: sdl_ttf
+      - name: shellcheck
+      - name: smpeg
+      - name: source-highlight
+      - name: spidermonkey
+      - name: sqlite
+      - name: stash-cli
+      - name: subversion
+      - name: subversion17
+        install-option: with-unicode-path
+      - name: terraform
+      - name: tig
+      - name: tmux
+      - name: tree
+      - name: typesafe-activator
+      - name: unixodbc
+      - name: vagrant-completion
+      - name: vim
+      - name: webp
+      - name: weechat
+      - name: wget
+      - name: wxmac
+      - name: x264
+      - name: xctool
+      - name: xvid
+      - name: xz
+      - name: yuicompressor
+      - name: zookeeper
 
     # Taps for Casks
     homebrew_cask_taps:
@@ -130,35 +229,60 @@
     #
     # state choices: [present, absent, installed, uninstalled] (default: present)
     homebrew_cask_packages:
-      - { name: alfred } # no need this since alfred v 2.6
-      - { name: 1password }
-      - { name: appcleaner }
-      - { name: atom }
-      - { name: bartender }
-      - { name: dash }
-      - { name: dropbox }
-      - { name: evernote }
-      - { name: firefox }
-      - { name: flux }
-      - { name: font-ricty-diminished }
-      - { name: geektool }
-      - { name: gitter }
-      - { name: github }
-      - { name: google-chrome }
-      - { name: intellij-idea-ce }
-      - { name: istat-menus }
-      - { name: iterm2 }
-      - { name: java }
-      - { name: kindle }
-      - { name: macwinzipper }
-      - { name: send-to-kindle }
-      - { name: shiftit }
-      - { name: skitch }
-      - { name: skype }
-      - { name: sourcetree }
-      - { name: spotify }
-      - { name: teleport }
-      - { name: todoist }
-      - { name: vagrant }
-      - { name: virtualbox }
-
+      - name: 1password
+      - name: alarm-clock
+      - name: alfred
+      - name: appcleaner
+      - name: atom
+      - name: bartender
+      - name: beyond-compare
+      - name: chatwork
+      - name: clipmenu
+      - name: dash
+      - name: diskwave
+      - name: dropbox
+      - name: eclipse-jee
+      - name: evernote
+      - name: firefox
+      - name: fluid
+      - name: flux
+      - name: font-ricty-diminished
+      - name: geektool
+      - name: gitkraken
+      - name: gitter
+      - name: google-chrome
+      - name: google-drive
+      - name: google-japanese-ime
+      - name: grandperspective
+      - name: insomniax
+      - name: intellij-idea-ce
+      - name: istat-menus
+      - name: iterm2
+      - name: java
+      - name: kindle
+      - name: limechat
+      - name: macwinzipper
+      - name: magican
+      - name: minecraft
+      - name: rstudio
+      - name: screenhero
+      - name: send-to-kindle
+      - name: shiftit
+      - name: skitch
+      - name: skype
+      - name: slack
+      - name: soundcast
+      - name: soundflower
+      - name: soundflowerbed
+      - name: sourcetree
+      - name: spotify
+      - name: td-agent
+      - name: teleport
+      - name: the-unarchiver
+      - name: toggldesktop
+      - name: vagrant
+      - name: virtualbox
+      - name: vivaldi
+      - name: vlc
+      - name: wireshark
+      - name: xquartz

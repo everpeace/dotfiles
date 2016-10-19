@@ -3,23 +3,23 @@
   homebrew_tap: tap=caskroom/cask state=present
 
 - name: Install/Upgrade Homebrew Cask
-  homebrew: name=brew-cask state=latest
+  homebrew: update_homebrew=yes
 
 - name: Open external Taps for Casks
   homebrew_tap: tap={{ item }} state=present
-  with_items: homebrew_cask_taps
-  when: homebrew_cask_taps
+  with_items: {{ homebrew_cask_taps }}
+  when: {{ homebrew_cask_taps }}
 
 - name: Install/Upgrade Homebrew Cask packages
   homebrew_cask: >
     name={{ item.name | default(item) }}
     state={{ item.state | default('present') }}
-  with_items: homebrew_cask_packages
-  when: homebrew_cask_packages
+  with_items: {{ homebrew_cask_packages }}
+  when: {{ homebrew_cask_packages }}
 
-- name: cask パッケージの情報保存先ディレクトリを作成
-  file: path=cask_info state=directory
+# - name: cask パッケージの情報保存先ディレクトリを作成
+#  file: path=cask_info state=directory
 
-- name: cask パッケージの情報を保存
-  shell: brew cask info {{ item }} > cask_info/{{ item }}
-  with_items: cask_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list
+# - name: cask パッケージの情報を保存
+#  shell: brew cask info {{ item }} > cask_info/{{ item }}
+#  with_items: cask_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list
