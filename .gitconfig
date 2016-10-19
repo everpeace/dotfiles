@@ -18,11 +18,21 @@
 [alias]
   tr = log --graph --pretty='format:%C(yellow)%h[%cr%Creset] %s %Cgreen(%an)%Creset %Cred%d%Creset'
   st = status --ignored
+  cb = rev-parse --abbrev-ref HEAD
+  pbcopy = !printf "$1" | pbcopy
 [sendemail]
-	smtpencryption = tls
-	smtpserver = /usr/local/bin/msmtp
-	smtpuser = everpeace@gmail.com
-	smtpserverport = 587
-	chainreplyto = false
-[remote "origin"]
-	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
+  smtpencryption = tls
+  smtpserver = /usr/local/bin/msmtp
+  smtpuser = everpeace@gmail.com
+  smtpserverport = 587
+  chainreplyto = false
+[filter "lfs"]
+  clean = git lfs clean %f
+  smudge = git lfs smudge %f
+  required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
