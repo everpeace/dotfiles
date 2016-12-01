@@ -187,7 +187,7 @@ if [ -e "${HOME}/.bash_profile.mine" ]; then
   source "${HOME}/.bash_profile.mine"
 fi
 
-echo activating and configuring google-cloud-sdk
+log activating and configuring google-cloud-sdk
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/omura/google-cloud-sdk/path.bash.inc'
 
