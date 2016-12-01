@@ -38,6 +38,7 @@ make_link .todo.actions.d
 make_link .tmux.conf
 make_link .mac-provisioning
 make_link .tigrc
+make_link .octaverc
 
 IFS=:
 GIT=false

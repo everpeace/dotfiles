@@ -150,7 +150,13 @@ if [ -f /usr/local/bin/brew ]; then
     dvm_prefix=$(brew --prefix dvm)
     [[ -s "$dvm_prefix/dvm.sh" ]] && source "$dvm_prefix/dvm.sh"
   fi
+
+  if is_installed octave; then
+    log alias octave with octave --no-gui-libs
+    alias octave='octave --no-gui-libs'
+  fi
 fi
+
 
 ## gp* : ghq + ghs + peco utilities
 function gpi(){
