@@ -216,3 +216,87 @@ if [ -e /usr/local/bin/kubectl ]; then
   log activating kubectl bash completion
   source <(kubectl completion bash)
 fi
+
+function auth_aws() {
+  key_id="$(1p_pw "awsapi|$1|$2|KEY_ID")"
+  export AWS_ACCESS_KEY_ID=${key_id}
+  echo export AWS_ACCESS_KEY_ID=...${key_id:(-5)}
+  secret="$(1p_pw "awsapi|$1|$2|SECRET")"
+  export AWS_SECRET_ACCESS_KEY=${secret}
+  echo export AWS_SECRET_ACCESS_KEY=...${secret:(-5)}
+
+  # read -sp "AWS_DEFAULT_REGION[ap-northeast-1]: " region
+  # tty -s && echo
+  region="$3"
+  if [ "${region}" = "" ]; then
+    region=ap-northeast-1
+  fi
+  export AWS_DEFAULT_REGION=${region}
+  echo export AWS_DEFAULT_REGION=${region}
+}
+
+function unauth_aws() {
+  set -x
+  unset AWS_ACCESS_KEY_ID
+  unset AWS_SECRET_ACCESS_KEY
+  unset AWS_DEFAULT_REGION
+  export | grep AWS_
+  set +x
+}
+
+function 1p_pw() {
+  1p_pw_copy "$*"
+  echo "$(pbpaste)"
+}
+
+function 1p_pw_copy() {
+  script=$(cat <<EOS
+on run argv
+  open location "x-onepassword-helper://search/"
+  delay 0.2
+  tell application "System Events" to tell process "1Password mini"
+    keystroke argv
+    delay 2
+    set frontmost to true
+    key code 124
+    delay 0.5
+    key code 36
+  end tell
+end run
+EOS
+)
+  echo | pbcopy
+  osascript -e "$script" "$*"
+  sleep 0.5
+}
+
+function 1p_keypair_copy() {
+  1p_keypair $@ | pbcopy
+}
+
+function 1p_keypair() {
+  script=$(cat <<EOS
+on run argv
+  open location "x-onepassword-helper://search/"
+  delay 0.2
+  tell application "System Events" to tell process "1Password mini"
+    keystroke argv
+    delay 2
+    set frontmost to true
+    key code 124
+    delay 0.5
+    key code 125
+    delay 0.2
+    key code 36
+  end tell
+end run
+EOS
+)
+  echo | pbcopy
+  osascript -e "$script" "awskeypair|$1|$2"
+  sleep 0.5
+  _HEADER="-----BEGIN RSA PRIVATE KEY-----"
+  _FOOTER="-----END RSA PRIVATE KEY-----"
+  body=$(echo $(pbpaste) | sed -e "s/${_HEADER} //g" -e "s/ ${_FOOTER}//g" | ruby -pe 'gsub(/ /,"\r\n")')
+  echo -n -e "${_HEADER}\r\n${body}\r\n${_FOOTER}"
+}
