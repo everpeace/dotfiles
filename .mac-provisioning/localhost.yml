@@ -110,6 +110,7 @@
       - name: ilmbase
       - name: isl
       - name: jpeg
+      - name: jid
       - name: jq
       - name: jsawk
       - name: jsvc
@@ -171,6 +172,7 @@
       - name: ponyc
       - name: portmidi
       - name: protobuf
+      - name: protobuf@2.5
       - name: pstree
       - name: pup
       - name: pyenv
@@ -185,6 +187,7 @@
       - name: rebar
       - name: ruby
       - name: ruby-build
+      - name: rust
       - name: s3cmd
       - name: sbt
       - name: scala
@@ -196,6 +199,7 @@
       - name: smpeg
       - name: source-highlight
       - name: spidermonkey
+      - name: spruce
       - name: sqlite
       - name: stash-cli
       - name: stern
@@ -206,10 +210,10 @@
       - name: tig
       - name: tmux
       - name: tree
-      - name: typesafe-activator
       - name: unixodbc
       - name: vagrant-completion
       - name: vim
+      - name: watch
       - name: webp
       - name: weechat
       - name: wget
@@ -239,10 +243,8 @@
       - name: alarm-clock
       - name: alfred
       - name: appcleaner
-      - name: atom
+      - name: atom-beta
       - name: bartender
-      - name: beyond-compare
-      - name: bettertouchtool
       - name: chatwork
       - name: clipmenu
       - name: dash
@@ -254,9 +256,11 @@
       - name: fluid
       - name: flux
       - name: font-ricty-diminished
+      - name: fork
       - name: geektool
       - name: gitkraken
       - name: gitter
+      - name: gogland
       - name: google-chrome
       - name: google-drive
       - name: google-japanese-ime
@@ -266,6 +270,7 @@
       - name: istat-menus
       - name: iterm2
       - name: java
+      - name: keybase
       - name: kindle
       - name: limechat
       - name: macwinzipper
@@ -286,10 +291,13 @@
       - name: td-agent
       - name: teleport
       - name: the-unarchiver
+      - name: tla-plus-toolbox
       - name: toggldesktop
       - name: vagrant
+      - name: vagrant@1.9.1
+      - name: vanilla
       - name: virtualbox
-      - name: vivaldi
+      - name: virtualbox@5.1.12-112440
       - name: vlc
       - name: wireshark
       - name: xquartz
