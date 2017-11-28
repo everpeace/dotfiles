@@ -9,9 +9,11 @@ alias ls='ls -aF'
 alias sl='ls'
 alias scalaz7='screpl org.scalaz%scalaz-example_2.11.0%7.1.0.RC1'
 alias log='>&2 echo [bash_profile] '
+alias kubeflc='kubectl --namespace flccm'
 
 DOTFILE_DIR="$(readlink "${HOME}/.bash_profile" | sed -e 's/\/\.bash_profile//')"
 PATH="${HOME}/.pyenv/shims:${HOME}/.cabal/bin:${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/svm:${HOME}/bin:${HOME}/.cargo/bin:${PATH}":/usr/local/sbin:/usr/local/bin
+export PATH=$PATH:/Users/omura/.minimesos/bin
 export PATH
 
 # svm settings
@@ -356,4 +358,9 @@ EOS
   _FOOTER="-----END RSA PRIVATE KEY-----"
   body=$(echo $(pbpaste) | sed -e "s/${_HEADER} //g" -e "s/ ${_FOOTER}//g" | ruby -pe 'gsub(/ /,"\r\n")')
   echo -n -e "${_HEADER}\r\n${body}\r\n${_FOOTER}"
+}
+
+# yaml to json
+function yaml2json () {
+ ruby -r yaml -r json -e 'puts YAML.load($stdin.read).to_json'
 }
