@@ -60,6 +60,7 @@
       - name: ctags
       - name: curl
       - name: darcs
+      - name: diff-so-fancy
       - name: direnv
       - name: docbook
       - name: docker
