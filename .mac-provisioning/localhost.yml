@@ -1,4 +1,5 @@
-- hosts: localhost
+- name: install homebrew and cask packages
+  hosts: localhost
   connection: local
   gather_facts: no
   sudo: no
@@ -12,6 +13,7 @@
     # - homebrew/binary
     homebrew_taps:
       - atlassian/tap
+      - go-delve/delve
       - homebrew/binary
       - homebrew/boneyard
       - homebrew/completions
@@ -19,11 +21,13 @@
       - homebrew/python
       - homebrew/science
       - homebrew/versions
+      - homebrew/x11
       - ishkawa/formulae
       - mackerelio/mackerel-agent
       - motemen/motemen
-      - peco/peco
+      - shawnxlw/tap
       - sona-tar/tools
+      - starkandwayne/cf
 
     # Homebrew packages
     #
@@ -245,6 +249,7 @@
       - name: appcleaner
       - name: atom-beta
       - name: bartender
+      - name: charles
       - name: chatwork
       - name: clipmenu
       - name: dash
@@ -272,10 +277,8 @@
       - name: java
       - name: keybase
       - name: kindle
-      - name: limechat
       - name: macwinzipper
-      - name: magican
-      - name: minecraft
+      - name: mininikube
       - name: rstudio
       - name: screenhero
       - name: send-to-kindle
@@ -301,3 +304,13 @@
       - name: vlc
       - name: wireshark
       - name: xquartz
+
+- name: install non-brewed packages
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  sudo: no
+  tasks:
+    - name: install glances
+      shell: |
+        curl -L https://bit.ly/glances | /bin/bash
