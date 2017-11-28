@@ -237,6 +237,13 @@ if [ -e /usr/local/bin/helm ]; then
   source <(helm completion bash)
 fi
 
+if is_installed mono; then
+  log exporting MONO_GAC_PREFIX
+  export MONO_GAC_PREFIX="/usr/local"
+  log exporting MONO_IOMAP
+  export MONO_IOMAP=case
+fi
+
 function auth_aws() {
   key_id="$(1p_pw "awsapi|$1|$2|KEY_ID")"
   export AWS_ACCESS_KEY_ID=${key_id}
