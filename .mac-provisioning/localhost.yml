@@ -196,6 +196,7 @@
       - name: spidermonkey
       - name: sqlite
       - name: stash-cli
+      - name: stern
       - name: subversion
       - name: subversion17
         install-option: with-unicode-path
