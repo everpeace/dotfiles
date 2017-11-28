@@ -44,6 +44,7 @@ make_link .tigrc
 make_link .octaverc
 make_link tmux-gitbar .tmux-gitbar
 make_link .tmux-gitbar.conf
+make_link .ocamlinit
 
 IFS=:
 GIT=false

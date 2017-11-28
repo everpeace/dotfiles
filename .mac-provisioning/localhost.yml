@@ -154,6 +154,7 @@
       - name: numpy
       - name: nvm
       - name: oniguruma
+      - name: opam
       - name: opencv
       - name: openexr
       - name: openssl

@@ -176,6 +176,17 @@ if [ -f /usr/local/bin/brew ]; then
     export GPG_TTY=$(tty)
   fi
 
+  if is_installed opam; then
+    log setting up opam
+    if [ -e $HOME/.opam/opam-init/init.sh ]; then
+      # OPAM configuration
+      . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+      eval `opam config env`
+    else
+      log "WARN run 'opam init' and answer 'no' for automatic configuration"
+    fi
+  fi
+
   if is_installed hh; then
     # hh settings
     log activating hh
