@@ -310,10 +310,10 @@ function 1p_pw_copy() {
   script=$(cat <<EOS
 on run argv
   open location "x-onepassword-helper://search/"
-  delay 0.2
+  delay 0.5
   tell application "System Events" to tell process "1Password mini"
     keystroke argv
-    delay 2
+    delay 3
     set frontmost to true
     key code 124
     delay 0.5
@@ -334,8 +334,8 @@ function 1p_keypair_copy() {
 function 1p_keypair() {
   script=$(cat <<EOS
 on run argv
-  open location "x-onepassword-helper://search/"
-  delay 0.2
+   open location "x-onepassword-helper://search/"
+  delay 0.5
   tell application "System Events" to tell process "1Password mini"
     keystroke argv
     delay 2
