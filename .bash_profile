@@ -232,6 +232,11 @@ if [ -e /usr/local/bin/kubectl ]; then
   source <(kubectl completion bash)
 fi
 
+if [ -e /usr/local/bin/helm ]; then
+  log activating helm bash completion
+  source <(helm completion bash)
+fi
+
 function auth_aws() {
   key_id="$(1p_pw "awsapi|$1|$2|KEY_ID")"
   export AWS_ACCESS_KEY_ID=${key_id}
