@@ -74,6 +74,7 @@
       - name: emscripten
       - name: erlang
       - name: etcd
+      - name: exa
       - name: ffmpeg
       - name: findutils
       - name: flyway

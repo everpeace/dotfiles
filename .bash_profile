@@ -155,6 +155,11 @@ if [ -f /usr/local/bin/brew ]; then
     log alias octave with octave --no-gui-libs
     alias octave='octave --no-gui-libs'
   fi
+
+  if is_installed exa; then
+    log alas ls with exa -aF
+    alias ls='exa -aF'
+  fi
 fi
 
 
