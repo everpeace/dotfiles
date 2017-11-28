@@ -160,6 +160,11 @@ if [ -f /usr/local/bin/brew ]; then
     log alas ls with exa -aF
     alias ls='exa -aF'
   fi
+
+  if is_installed kubernetes-tools; then
+    log activating kubernetes-tools completion
+    source /usr/local/Cellar/kubernetes-tools/1.0.0/completion/__completion
+  fi
 fi
 
 

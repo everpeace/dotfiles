@@ -111,6 +111,7 @@
       - name: jq
       - name: jsawk
       - name: jsvc
+      - name: kubernetes-tools
       - name: lame
       - name: lastpass-cli
         install-option: [with-pinentry, with-docs]
