@@ -91,14 +91,12 @@ if [ -f /usr/local/bin/brew ]; then
   # git completion and prompt settings
   GIT_PROMPT_THEME=Default
   GIT_PROMPT_START="\\n-(\\u@\\h)-(\\w)-\\n"
-  GIT_PROMPT_END="\\n $ "
+  GIT_PROMPT_END=" $ "
   PS1="${GIT_PROMPT_START} $ "
   GIT_PROMPT_ONLY_IN_REPO=1
   if is_installed bash-git-prompt; then
     log activating bash-git-prompt
     source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
-  else
-    export PS1=${GIT_PROMPT_START}${GIT_PROMPT_END}
   fi
 
   if [ -f $brew_prefix/bin/nvm.sh ]; then
