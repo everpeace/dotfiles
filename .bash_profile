@@ -194,7 +194,7 @@ function gpcd(){
 function gwt() {
   local GIT_CDUP_DIR=`git rev-parse --show-cdup`
   mkdir -p ${GIT_CDUP_DIR}git-worktrees
-  git worktree add ${GIT_CDUP_DIR}git-worktrees/$1 -B $1
+  git worktree add ${GIT_CDUP_DIR}git-worktrees/$1 $1
 }
 
 ## source .bash_profile.mine ##
