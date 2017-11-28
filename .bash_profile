@@ -37,6 +37,8 @@ function git-root() {
   fi
 }
 
+function mkdircd() { mkdir "$@" && eval cd "\"\$$#\""; }
+
 # configuration for packages installed by Homebrew
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 if [ -f /usr/local/bin/brew ]; then
