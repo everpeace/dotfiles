@@ -39,6 +39,8 @@ make_link .tmux.conf
 make_link .mac-provisioning
 make_link .tigrc
 make_link .octaverc
+make_link tmux-gitbar .tmux-gitbar
+make_link .tmux-gitbar.conf
 
 IFS=:
 GIT=false

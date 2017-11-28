@@ -11,3 +11,6 @@
 	path = gitsshm
 	url = https://github.com/everpeace/gitsshm.git
 
+[submodule "tmux-gitbar"]
+	path = tmux-gitbar
+	url = https://github.com/aurelien-rainone/tmux-gitbar.git
