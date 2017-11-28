@@ -14,7 +14,7 @@
   excludesfile = ~/.gitignore  # globalな.gitignoreの指定
   autocrlf = input                 # CRLFを自動変換
 [http]
-  sslVerify = false
+	sslVerify = true
 [alias]
   tr = log --graph --pretty='format:%C(yellow)%h[%cr%Creset] %s %Cgreen(%an)%Creset %Cred%d%Creset'
   st = status --ignored
@@ -39,3 +39,7 @@
 [pager]
 	diff = diff-so-fancy | less --tabs=4 -RFX --pattern='^(added|deleted|modified): '
 	show = diff-so-fancy | less --tabs=4 -RFX
+[commit]
+	gpgsign = false
+[gpg]
+	program = gpg

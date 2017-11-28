@@ -170,6 +170,11 @@ if [ -f /usr/local/bin/brew ]; then
     log activating stern completion
     source <(stern --completion=bash)
   fi
+
+  if is_installed gpg; then
+    log setting up GPG_TTY
+    export GPG_TTY=$(tty)
+  fi
 fi
 
 
