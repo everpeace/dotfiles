@@ -104,6 +104,7 @@
       - name: gradle
       - name: graphviz
       - name: h2
+      - name: hh
       - name: hub
       - name: iftop
       - name: ilmbase
