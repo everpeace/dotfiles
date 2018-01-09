@@ -13,7 +13,7 @@ alias kubeflc='kubectl --namespace flccm'
 
 DOTFILE_DIR="$(readlink "${HOME}/.bash_profile" | sed -e 's/\/\.bash_profile//')"
 PATH="${HOME}/.pyenv/shims:${HOME}/.cabal/bin:${HOME}/.svm/current/rt/bin:${DOTFILE_DIR}/svm:${HOME}/bin:${HOME}/.cargo/bin:${PATH}":/usr/local/sbin:/usr/local/bin
-export PATH=$PATH:/Users/omura/.minimesos/bin
+export PATH=$PATH:${HOME}/.minimesos/bin
 export PATH
 
 # svm settings
@@ -48,6 +48,7 @@ function virtualenv_info(){
   fi
 }
 VENV="\$(virtualenv_info)"
+
 # configuration for packages installed by Homebrew
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 if [ -f /usr/local/bin/brew ]; then
@@ -65,7 +66,7 @@ if [ -f /usr/local/bin/brew ]; then
   if is_installed go; then
     log exporting GOROOT, GOPATH and PATH.
     export GOROOT=$brew_prefix/opt/go/libexec
-    export GOPATH=/Users/omura/go
+    export GOPATH=${HOME}/go
     export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
   fi
 
@@ -241,21 +242,23 @@ if [ -e "${HOME}/.bash_profile.mine" ]; then
   source "${HOME}/.bash_profile.mine"
 fi
 
-log activating and configuring google-cloud-sdk
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/omura/google-cloud-sdk/path.bash.inc'
+if [ -e "${HOME}/google-cloud-sdk" ]; then
+  log activating and configuring google-cloud-sdk
+  # The next line updates PATH for the Google Cloud SDK.
+  source '${HOME}/google-cloud-sdk/path.bash.inc'
 
-# The next line enables shell command completion for gcloud.
-source '/Users/omura/google-cloud-sdk/completion.bash.inc'
-
-# path to the DCOS CLI binary
-if [[ "$PATH" != *"/Users/omura/dcos/bin"* ]];
-  then export PATH=$PATH:/Users/omura/dcos/bin;
+  # The next line enables shell command completion for gcloud.
+  source '${HOME}/google-cloud-sdk/completion.bash.inc'
 fi
 
 # path to the DCOS CLI binary
-if [[ "$PATH" != *"/Users/omura/Desktop/dcos/bin"* ]];
-  then export PATH=$PATH:/Users/omura/Desktop/dcos/bin;
+if [[ "$PATH" != *"${HOME}/dcos/bin"* ]];
+  then export PATH=$PATH:${HOME}/dcos/bin;
+fi
+
+# path to the DCOS CLI binary
+if [[ "$PATH" != *"${HOME}/Desktop/dcos/bin"* ]];
+  then export PATH=$PATH:${HOME}/Desktop/dcos/bin;
 fi
 
 # Microsoft R Open
