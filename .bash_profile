@@ -22,7 +22,7 @@ export SCALA_HOME=${HOME}/.svm/current/rt
 # gitsshm
 log configuring gitsshm
 alias gitsshm="source ${DOTFILE_DIR}/gitsshm/gitsshm"
-gitsshm everpeace_cw
+gitsshm everpeace_github
 
 if [ -e /opt/chefdk/bin ]; then
   export PATH=/opt/chefdk/bin:${PATH}
@@ -41,6 +41,13 @@ function git-root() {
 
 function mkdircd() { mkdir "$@" && eval cd "\"\$$#\""; }
 
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+function virtualenv_info(){
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    echo -n "[venv:`basename "$VIRTUAL_ENV"`]-"
+  fi
+}
+VENV="\$(virtualenv_info)"
 # configuration for packages installed by Homebrew
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 if [ -f /usr/local/bin/brew ]; then
@@ -92,7 +99,7 @@ if [ -f /usr/local/bin/brew ]; then
 
   # git completion and prompt settings
   GIT_PROMPT_THEME=Default
-  GIT_PROMPT_START="\\n-(\\u@\\h)-(\\w)-\\n"
+  GIT_PROMPT_START="\\n-(\\u@\\h)-(\\w)-${VENV}\\n"
   GIT_PROMPT_END=" $ "
   PS1="${GIT_PROMPT_START} $ "
   GIT_PROMPT_ONLY_IN_REPO=1
