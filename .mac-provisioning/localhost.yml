@@ -42,20 +42,20 @@
       - name: ack
       - name: amazon-ecs-cli
       - name: ansible
-      - name: ansible19
+      # - name: ansible19
       - name: ant
       - name: asciidoc
       - name: autoconf
       - name: autojump
       - name: automake
-      - name: automake112
+      # - name: automake112
       - name: aws-elasticbeanstalk
       - name: aws-shell
       - name: awscli
       - name: bash-completion
       - name: bash-git-prompt
       - name: boost
-      - name: boot2docker
+      # - name: boot2docker
       - name: cabal-install
       - name: cairo
       - name: cmake
@@ -68,7 +68,7 @@
       - name: direnv
       - name: docbook
       - name: docker
-      - name: docker-completion
+      # - name: docker-completion
       - name: docker-compose
       - name: docker-machine
       - name: docker-swarm
@@ -118,7 +118,7 @@
       - name: jq
       - name: jsawk
       - name: jsvc
-      - name: kubernetes-tools
+      # - name: kubernetes-tools
       - name: lame
       - name: lastpass-cli
         install-option: [with-pinentry, with-docs]
@@ -139,7 +139,7 @@
       - name: libyaml
       - name: llvm
       - name: lnav
-      - name: lp_solve
+      # - name: lp_solve
       - name: ls2xs
       - name: lua
       - name: markdown
@@ -181,7 +181,7 @@
       - name: pup
       - name: pyenv
       - name: pyenv-virtualenv
-      - name: pygame
+      # - name: pygame
       - name: python
       - name: python3
       - name: r
@@ -207,9 +207,9 @@
       - name: sqlite
       - name: stash-cli
       - name: stern
-      - name: subversion
-      - name: subversion17
-        install-option: with-unicode-path
+      # - name: subversion
+      # - name: subversion17
+      #   install-option: with-unicode-path
       - name: terraform
       - name: tig
       - name: tmux
@@ -251,10 +251,10 @@
       - name: bartender
       - name: charles
       - name: chatwork
-      - name: clipmenu
+      # - name: clipmenu
       - name: dash
       - name: diskwave
-      - name: dropbox
+      # - name: dropbox
       - name: eclipse-jee
       - name: evernote
       - name: firefox
@@ -265,9 +265,9 @@
       - name: geektool
       - name: gitkraken
       - name: gitter
-      - name: gogland
+      - name: goland
       - name: google-chrome
-      - name: google-drive
+      - name: google-backup-and-sync
       - name: google-japanese-ime
       - name: grandperspective
       - name: insomniax
@@ -278,29 +278,29 @@
       - name: keybase
       - name: kindle
       - name: macwinzipper
-      - name: mininikube
+      - name: minikube
       - name: rstudio
-      - name: screenhero
-      - name: send-to-kindle
+      # - name: screenhero
+      # - name: send-to-kindle
       - name: shiftit
       - name: skitch
       - name: skype
       - name: slack
-      - name: soundcast
+      # - name: soundcast
       - name: soundflower
       - name: soundflowerbed
       - name: sourcetree
       - name: spotify
       - name: td-agent
-      - name: teleport
+      # - name: teleport
       - name: the-unarchiver
       - name: tla-plus-toolbox
-      - name: toggldesktop
+      # - name: toggldesktop
       - name: vagrant
-      - name: vagrant@1.9.1
+      # - name: vagrant@1.9.1
       - name: vanilla
       - name: virtualbox
-      - name: virtualbox@5.1.12-112440
+      # - name: virtualbox@5.1.12-112440
       - name: vlc
       - name: wireshark
       - name: xquartz
@@ -311,6 +311,6 @@
   gather_facts: no
   sudo: no
   tasks:
-    - name: install glances
-      shell: |
-        curl -L https://bit.ly/glances | /bin/bash
+    # - name: install glances
+    #   shell: |
+    #     pip install glances
