@@ -23,8 +23,8 @@ FROM=$(cd "$FROM"; pwd)
 # リンクを張る場所
 TO=$HOME
 
-echo "ln -hfs" "$FROM" "$TO/dotfiles"
-ln -hfs "$FROM" "$TO/dotfiles"
+# echo "ln -hfs" "$FROM" "$TO/dotfiles"
+# ln -hfs "$FROM" "$TO/dotfiles"
 
 make_link .bash_profile
 make_link .vim
