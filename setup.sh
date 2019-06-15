@@ -26,24 +26,17 @@ TO=$HOME
 # echo "ln -hfs" "$FROM" "$TO/dotfiles"
 # ln -hfs "$FROM" "$TO/dotfiles"
 
-make_link .bash_profile
+# make_link .bash_profile
 make_link .vim
 make_link .vimrc
 make_link .zshrc
-make_link .screenrc
 make_link powerline .config/powerline
 make_link .Rprofile
 make_link bin
-make_link msmtp/.msmtprc .msmtprc
-make_link msmtp/.certs/ThawtePremiumServerCA.pem .ThawtePremiumServerCA.pem
-make_link .todo.cfg
-make_link .todo.actions.d
 make_link .tmux.conf
 make_link .mac-provisioning
 make_link .tigrc
 make_link .octaverc
-make_link tmux-gitbar .tmux-gitbar
-make_link .tmux-gitbar.conf
 make_link .ocamlinit
 
 IFS=:
