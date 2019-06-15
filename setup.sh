@@ -27,7 +27,6 @@ echo "ln -hfs" "$FROM" "$TO/dotfiles"
 ln -hfs "$FROM" "$TO/dotfiles"
 
 make_link .bash_profile
-# make_link .gitignore
 make_link .vim
 make_link .vimrc
 make_link .zshrc
@@ -58,5 +57,6 @@ then
   # git config --global user.email "everpeace@gmail.com"
   # git config --global core.excludesfile "$TO/.gitignore"
   make_link .gitconfig
+  make_link .gitignore_global
 else echo "no git"
 fi
