@@ -1,0 +1,38 @@
+{
+  "segments": {
+    "right": [
+      {
+        "function": "ext.shell.segments.sshuttle.status",
+        "priority": 30
+      },
+      {
+        "function": "powerkube.context",
+        "priority": 30,
+        "args": {
+          "show_cluster": true,
+          "show_namespace": true,
+          "show_user": true,
+          "alert_namespaces": ["kube-system", "deepmux-system"]
+        }
+      },
+      {
+        "function": "powerline.segments.common.vcs.stash",
+        "priority": 50
+      },
+      {
+        "function": "powerline.segments.common.vcs.branch",
+        "priority": 40
+      },
+      {
+        "function": "powerline.segments.common.env.virtualenv",
+        "priority": 50
+      },
+      {
+        "function": "powerline.segments.common.net.external_ip"
+      },
+      {
+        "function": "powerline.segments.common.net.hostname"
+      }
+    ]
+  }
+}
