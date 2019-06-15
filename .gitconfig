@@ -20,6 +20,7 @@
   st = status --ignored
   cb = rev-parse --abbrev-ref HEAD
   pbcopy = !printf "$1" | pbcopy
+  ignore = "!gi() { curl -sL gitignore.io/api/$@ ;}; gi"
 [sendemail]
   smtpencryption = tls
   smtpserver = /usr/local/bin/msmtp
