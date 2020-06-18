@@ -31,6 +31,7 @@ make_link .vim
 make_link .vimrc
 make_link .zshrc
 make_link powerline .config/powerline
+make_link starship.toml .config/starship.toml
 make_link .Rprofile
 make_link bin
 make_link .tmux.conf

@@ -1,0 +1,59 @@
+# https://starship.rs/ja-JP/config/
+add_newline = true
+scan_timeout = 30
+prompt_order = [
+    "kubernetes",
+    "docker_context",
+    "package",
+    "dotnet",
+    "elixir",
+    "elm",
+    "golang",
+    "haskell",
+    "java",
+    "julia",
+    "nodejs",
+    "php",
+    "python",
+    "ruby",
+    "rust",
+    "terraform",
+    "nix_shell",
+    "conda",
+    "memory_usage",
+    "aws",
+    "env_var",
+    "crystal",
+    "cmd_duration",
+
+    "line_break",
+
+    "hostname",
+    "username",
+    "directory",
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "git_status",
+    "hg_branch",
+
+    "line_break",
+    
+    "jobs",
+    "battery",
+    "time",
+    "character",
+]
+
+[kubernetes]
+disabled = false
+
+[aws]
+symbol = "⛅️ "
+
+[character]
+symbol = "$"
+
+[directory]
+truncation_length = 5
+truncate_to_repo = false

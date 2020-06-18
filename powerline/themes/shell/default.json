@@ -4,9 +4,6 @@
       {
         "left": [
           {
-            "function": "powerline.segments.shell.mode"
-          },
-          {
             "function": "powerline.segments.common.net.hostname",
             "priority": 10
           },
@@ -16,6 +13,14 @@
           },
           {
             "function": "powerline.segments.common.env.virtualenv",
+            "priority": 50
+          },
+          {
+            "function": "powerline.segments.common.vcs.stash",
+            "priority": 50
+          },
+          {
+            "function": "powerline.segments.common.vcs.branch",
             "priority": 50
           },
           {
@@ -30,14 +35,6 @@
             "priority": 20
           },
           {
-            "function": "powerline.segments.shell.last_status",
-            "priority": 10
-          },
-          {
-            "function": "powerline.segments.shell.last_pipe_status",
-            "priority": 10
-          },
-          {
             "type": "string",
             "highlight_groups": ["background"],
             "draw_soft_divider": false,
@@ -45,13 +42,22 @@
             "width": "auto"
           }
         ],
-        "right": []
+        "right": [
+          {
+            "function": "powerline.segments.shell.last_status",
+            "priority": 10
+          },
+          {
+            "function": "powerline.segments.shell.last_pipe_status",
+            "priority": 10
+          }
+        ]
       }
     ],
     "left": [
       {
         "type": "string",
-        "highlight_groups": ["time"],
+        "highlight_groups": ["date"],
         "draw_soft_divider": false,
         "draw_hard_divider": false,
         "contents": "$ "
