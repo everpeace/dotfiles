@@ -1,6 +1,13 @@
 [user]
   name = Shingo Omura
   email = everpeace@gmail.com
+
+[include]
+  path = ~/.local/.gitconfig
+
+[includeIf "gitdir:~/src/github.com/"]
+  path = ~/.gitconfig.d/github.com
+
 [color]
   # colorの設定(以下のコマンドは自動で色つける)
   status = auto
@@ -8,39 +15,44 @@
   branch = auto
   interactive = auto
   grep = auto
+
 [push]
   default = tracking       # defaultのpush先はtrackingしているリポジトリ
+
 [core]
-  excludesfile = /Users/everpeace/.gitignore_global
+  excludesfile = ~/.gitignore_global
   autocrlf = input                 # CRLFを自動変換
+
 [http]
 	sslVerify = true
+
 [alias]
   tr = log --graph --pretty='format:%C(yellow)%h[%cr%Creset] %s %Cgreen(%an)%Creset %Cred%d%Creset'
   st = status --ignored
   cb = rev-parse --abbrev-ref HEAD
   pbcopy = !printf "$1" | pbcopy
   ignore = "!gi() { curl -sL gitignore.io/api/$@ ;}; gi"
+
 [sendemail]
   smtpencryption = tls
   smtpserver = /usr/local/bin/msmtp
   smtpuser = everpeace@gmail.com
   smtpserverport = 587
   chainreplyto = false
+
 [filter "lfs"]
   clean = git lfs clean %f
   smudge = git lfs smudge %f
   required = true
+
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
+
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+
 [pager]
 	diff = diff-so-fancy | less --tabs=4 -RFX --pattern='^(added|deleted|modified): '
 	show = diff-so-fancy | less --tabs=4 -RFX
-[commit]
-	gpgsign = false
-[gpg]
-	program = gpg

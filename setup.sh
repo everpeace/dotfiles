@@ -23,9 +23,6 @@ FROM=$(cd "$FROM"; pwd)
 # リンクを張る場所
 TO=$HOME
 
-# echo "ln -hfs" "$FROM" "$TO/dotfiles"
-# ln -hfs "$FROM" "$TO/dotfiles"
-
 # make_link .bash_profile
 make_link .vim
 make_link .vimrc
@@ -54,5 +51,6 @@ then
   # git config --global core.excludesfile "$TO/.gitignore"
   make_link .gitconfig
   make_link .gitignore_global
+  make_link .gitconfig.d
 else echo "no git"
 fi
