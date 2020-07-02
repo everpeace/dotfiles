@@ -2,6 +2,7 @@
 add_newline = true
 scan_timeout = 30
 prompt_order = [
+    "time",
     "kubernetes",
     "docker_context",
     "package",
@@ -38,12 +39,14 @@ prompt_order = [
     "hg_branch",
 
     "line_break",
-    
+
     "jobs",
     "battery",
-    "time",
     "character",
 ]
+
+[python]
+pyenv_version_name = true
 
 [kubernetes]
 disabled = false
