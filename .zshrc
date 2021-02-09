@@ -33,6 +33,8 @@ typeset -U path cdpath fpath manpath
 alias log='>&2 echo \[.zshrc\] '
 bindkey -e
 autoload colors
+autoload -Uz compinit
+compinit
 
 source_all() {
     local dir=$1
