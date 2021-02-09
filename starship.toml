@@ -1,49 +1,61 @@
 # https://starship.rs/ja-JP/config/
 add_newline = true
 scan_timeout = 30
-prompt_order = [
-    "time",
-    "kubernetes",
-    "docker_context",
-    "package",
-    "dotnet",
-    "elixir",
-    "elm",
-    "golang",
-    "haskell",
-    "java",
-    "julia",
-    "nodejs",
-    "php",
-    "python",
-    "ruby",
-    "rust",
-    "terraform",
-    "nix_shell",
-    "conda",
-    "memory_usage",
-    "aws",
-    "env_var",
-    "crystal",
-    "cmd_duration",
+format = """\
+  $username\
+  $hostname\
+  $time\
+\
+  $line_break\
+\
+  $kubernetes\
+  $docker_context\
+  $package\
+  $dotnet\
+  $elixir\
+  $elm\
+  $golang\
+  $haskell\
+  $java\
+  $julia\
+  $nodejs\
+  $php\
+  $env_var\
+  $python\
+  $ruby\
+  $rust\
+  $terraform\
+  $nix_shell\
+  $conda\
+  $memory_usage\
+  $aws\
+  $gcloud\
+  $crystal\
+  $cmd_duration\
+\
+  $line_break\
+\
+  $hostname\
+  $username\
+  $directory\
+  $git_branch\
+  $git_commit\
+  $git_state\
+  $git_status\
+  $hg_branch\
+\
+  $line_break\
+\
+  $status\
+  $jobs\
+  $battery\
+  $character\
+  """
 
-    "line_break",
-
-    "hostname",
-    "username",
-    "directory",
-    "git_branch",
-    "git_commit",
-    "git_state",
-    "git_status",
-    "hg_branch",
-
-    "line_break",
-
-    "jobs",
-    "battery",
-    "character",
-]
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❮](bold green)"
 
 [python]
 pyenv_version_name = true
@@ -54,9 +66,26 @@ disabled = false
 [aws]
 symbol = "⛅️ "
 
-[character]
-symbol = "$"
-
 [directory]
 truncation_length = 5
 truncate_to_repo = false
+
+# [env_var]
+# variable = "PYENV_VERSION"
+# format = "🐍 $env_value "
+
+[status]
+disabled = false
+format = "[$symbol $status]($style) "
+
+[time]
+disabled = false
+format = '🕙[\[ $time \]]($style) '
+
+[cmd_duration]
+disabled = false
+min_time = 200
+show_milliseconds = true
+
+[gcloud]
+format = 'on [$symbol $project(\($region\))]($style) '
