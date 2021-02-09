@@ -1,5 +1,10 @@
 #! /bin/bash
 
+LN="ln -hfs"  # mac
+if ! ln -hfs /tmp/dummy >/dev/null 2>&1; then 
+  LN="ln -fs" # linux
+fi
+
 function make_link()
 {
   if [ $# -eq 1 ];then
@@ -11,8 +16,8 @@ function make_link()
     _tofilename=$2
   fi
   if [ $# -eq 1 -o $# -eq 2 ];then
-    echo "ln -hfs" "$FROM/$_fromfilename" "$TO/$_tofilename"
-    ln -hfs "$FROM/$_fromfilename" "$TO/$_tofilename"
+    echo "$LN" "$FROM/$_fromfilename" "$TO/$_tofilename"
+    $LN "$FROM/$_fromfilename" "$TO/$_tofilename"
   fi
 }
 
