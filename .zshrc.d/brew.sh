@@ -1,6 +1,6 @@
 # configure home brew packages
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-if [ -f /usr/local/bin/brew ]; then
+if which brew >/dev/null 2>&1; then
   # brew_list_cache=$(brew list -1)
   brew_prefix=$(brew --prefix)
 

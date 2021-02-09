@@ -1,3 +1,10 @@
+# init homebrew
+if [ -f $HOME/.local/init_brew.sh ]; then 
+    source $HOME/.local/init_brew.sh
+else
+    eval $(/usr/local/bin/brew shellenv)
+fi
+
 # Language Setting
 export LANG=ja_JP.UTF-8
 export LC_ALL=${LANG}
