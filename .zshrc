@@ -51,9 +51,10 @@ fi
 # # powerline
 # . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
+export PATH="${HOME}/bin:${PATH}"
 [ -e ${KREW_ROOT:-$HOME/.krew}/bin ] && log add krew to PATH && export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 [ -e /usr/local/kubebuilder/bin ] && log add kubebuilder to PATH && export PATH=$PATH:/usr/local/kubebuilder/bin
-export PATH="${HOME}/.embulk/bin::${HOME}/bin:${PATH}"
+[ -e ${HOME}/.embulk/bin ] && export log add ~/.embalk/bin to PATH && PATH="${HOME}/.embulk/bin:${PATH}"
 
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
