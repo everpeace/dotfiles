@@ -1,5 +1,5 @@
 # init homebrew
-if [ -f $HOME/.local/init_brew.sh ]; then 
+if [ -f $HOME/.local/init_brew.sh ]; then
     source $HOME/.local/init_brew.sh
 else
     eval $(/usr/local/bin/brew shellenv)
@@ -54,7 +54,7 @@ fi
 export PATH="${HOME}/bin:${PATH}"
 [ -e ${KREW_ROOT:-$HOME/.krew}/bin ] && log add krew to PATH && export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 [ -e /usr/local/kubebuilder/bin ] && log add kubebuilder to PATH && export PATH=$PATH:/usr/local/kubebuilder/bin
-[ -e ${HOME}/.embulk/bin ] && export log add ~/.embalk/bin to PATH && PATH="${HOME}/.embulk/bin:${PATH}"
+[ -e ${HOME}/.embulk/bin ] && log add ~/.embalk/bin to PATH && PATH="${HOME}/.embulk/bin:${PATH}"
 
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
