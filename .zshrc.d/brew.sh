@@ -16,7 +16,7 @@ if which brew >/dev/null 2>&1; then
     log exporting GOROOT, GOPATH and PATH.
     export GOROOT=$brew_prefix/opt/go/libexec
     export GOPATH=${HOME}/go
-    export PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
+    export PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
   # fi
 
   # if is_installed direnv; then
