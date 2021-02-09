@@ -33,4 +33,7 @@ if which brew >/dev/null 2>&1; then
     log setting up GPG_TTY
     export GPG_TTY=$(tty)
   # fi
+
+  log activating src-hilight
+  export LESSOPEN="| ${brew_prefix}/bin/src-hilite-lesspipe.sh  %s"
 fi

@@ -12,7 +12,6 @@ export LC_ALL=${LANG}
 # Pager
 export LESSCHARSET=utf-8
 export LESS="-R"
-export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh  %s'
 export EDITOR='vim'
 export MANPAGER='less -R'
 # colorize man
