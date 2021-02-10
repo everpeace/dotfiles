@@ -35,8 +35,6 @@ format = """\
 \
   $line_break\
 \
-  $hostname\
-  $username\
   $directory\
   $git_branch\
   $git_commit\
