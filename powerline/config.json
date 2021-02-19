@@ -2,7 +2,7 @@
 	"common": {
 		"term_truecolor": true,
 		"log_file": "~/powerlog",
-		"log_level": "DEBUG",
+		"log_level": "INFO",
 		"default_top_theme": "powerline",
 		"paths": [
 			"/Users/everpeace/.config/powerline"
