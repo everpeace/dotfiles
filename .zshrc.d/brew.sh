@@ -1,39 +1,48 @@
 # configure home brew packages
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-if which brew >/dev/null 2>&1; then
-  # brew_list_cache=$(brew list -1)
-  brew_prefix=$(brew --prefix)
 
-  # is_installed(){
-  #   if [ "$(echo "$brew_list_cache" |grep -c "^$1$")" = "1" ]; then
-  #     return 0
-  #   else
-  #     return 1
-  #   fi
-  # }
+if [ -f $HOME/.local/init_brew.sh ]; then
+    log "init brew (by $HOME/.local/init_brew.sh)"
+    source $HOME/.local/init_brew.sh
+elif type brew >/dev/null 2>&1; then
+    log "init brew (by brew shellenv)"
+    eval $(brew shellenv)
+fi
 
-  # if is_installed go; then
-    log exporting GOROOT, GOPATH and PATH.
-    export GOROOT=$brew_prefix/opt/go/libexec
-    export GOPATH=${HOME}/go
-    export PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
-  # fi
+if type brew >/dev/null 2>&1; then
+  log activating zsh/site-functions,zsh/zsh-completions
+  FPATH=${HOMEBREW_PREFIX}/share/zsh/site-functions:$FPATH
+  FPATH=${HOMEBREW_PREFIX}/share/zsh-completions:$FPATH
+  autoload -Uz compinit
+  compinit -u
 
-  # if is_installed direnv; then
-    log activating direnv
-    eval "$(direnv hook zsh)"
-  # fi
+  log activating autojump
+  [[ -s ${HOMEBREW_PREFIX}/etc/autojump.sh ]] && . ${HOMEBREW_PREFIX}/etc/autojump.sh
 
-  # if is_installed stern; then
-    log activating stern completion
-    source <(stern --completion=zsh)
-  # fi
+  log activating direnv
+  eval "$(direnv hook zsh)"
 
-  # if is_installed gpg; then
-    log setting up GPG_TTY
-    export GPG_TTY=$(tty)
-  # fi
+  log exporting GOROOT, GOPATH and PATH.
+  export GOROOT=${HOMEBREW_PREFIX}/opt/go/libexec
+  export GOPATH=${HOME}/go
+  export PATH=${GOPATH}/bin:${GOROOT}/bin:${PATH}
+
+  log setting up GPG_TTY
+  export GPG_TTY=$(tty)
+
+  log activating stern completion
+  source <(stern --completion=zsh)
 
   log activating src-hilight
-  export LESSOPEN="| ${brew_prefix}/bin/src-hilite-lesspipe.sh  %s"
+  export LESSOPEN="| ${HOMEBREW_PREFIX}/bin/src-hilite-lesspipe.sh  %s"
+
+  log activating zsh-autosuggestions
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+  log activating zsh-substring-search
+  source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+ 
+  log activating zsh-syntax-hilighting
+  export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi

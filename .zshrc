@@ -1,9 +1,5 @@
-# init homebrew
-if [ -f $HOME/.local/init_brew.sh ]; then
-    source $HOME/.local/init_brew.sh
-else
-    eval $(/usr/local/bin/brew shellenv)
-fi
+# zmodload zsh/zprof && zprof
+alias log='>&2 echo \[$(basename ${(%):-%N})\] '
 
 # Language Setting
 export LANG=ja_JP.UTF-8
@@ -29,12 +25,10 @@ man() {
 
 # PATHの重複をなくす
 typeset -U path cdpath fpath manpath
-
-alias log='>&2 echo \[.zshrc\] '
 bindkey -e
 autoload colors
-autoload -Uz compinit
-compinit
+# autoload -Uz compinit
+# compinit -u
 
 source_all() {
     local dir=$1
@@ -50,6 +44,18 @@ fi
 
 # # powerline
 # . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+# 補完関数の表示を強化する
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
+zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
+zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
+
+# マッチ種別を別々に表示
+zstyle ':completion:*' group-name ''
 
 export PATH="${HOME}/bin:${PATH}"
 [ -e ${KREW_ROOT:-$HOME/.krew}/bin ] && log add krew to PATH && export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
