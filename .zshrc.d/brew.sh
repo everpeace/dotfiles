@@ -10,6 +10,9 @@ elif type brew >/dev/null 2>&1; then
 fi
 
 if type brew >/dev/null 2>&1; then
+  log activating asdf
+  . ${HOMEBREW_PREFIX}/opt/asdf.sh
+
   log activating zsh/site-functions,zsh/zsh-completions
   FPATH=${HOMEBREW_PREFIX}/share/zsh/site-functions:$FPATH
   FPATH=${HOMEBREW_PREFIX}/share/zsh-completions:$FPATH
