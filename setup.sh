@@ -33,6 +33,7 @@ make_link .vim
 make_link .vimrc
 make_link .zshrc
 make_link .zshrc.d
+make_link peco .config/peco
 make_link powerline .config/powerline
 make_link starship.toml .config/starship.toml
 make_link .Rprofile
