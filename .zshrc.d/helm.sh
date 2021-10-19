@@ -1,4 +1,9 @@
-if [ -e /usr/local/bin/helm ]; then
-  log activating helm zsh completion
-  source <(helm completion zsh)
-fi
+# lazy load helm compltion
+
+function helm() {
+    if ! type __start_helm >/dev/null 2>&1; then
+        source <(command helm completion zsh)
+    fi
+
+    command helm "$@"
+}
