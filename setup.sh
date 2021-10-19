@@ -29,6 +29,8 @@ FROM=$(cd "$FROM"; pwd)
 TO=$HOME
 
 # make_link .bash_profile
+make_link .Brewfile
+make_link .Brewfile.lock.json
 make_link .vim
 make_link .vimrc
 make_link .zshrc
