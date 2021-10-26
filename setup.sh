@@ -52,6 +52,8 @@ make_link .gitconfig
 make_link .gitignore_global
 make_link .gitconfig.d
 make_link vault .vault
+make_link .yabairc
+make_link .skhdrc
 
 # IFS=:
 # GIT=false
