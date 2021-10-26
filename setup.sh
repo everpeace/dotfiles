@@ -1,7 +1,7 @@
 #! /bin/bash
 
 LN="ln -hfs"  # mac
-if ! ln -hfs /tmp/dummy >/dev/null 2>&1; then
+if ! ln -hfs /tmp/dummy . >/dev/null 2>&1; then
   LN="ln -fsT" # linux
 fi
 
@@ -15,7 +15,7 @@ function make_link()
     _fromfilename=$1
     _tofilename=$2
   fi
-  if [ $# -eq 1 -o $# -eq 2 ];then
+  if [ $# -eq 1 ] || [ $# -eq 2 ];then
     echo "$LN" "$FROM/$_fromfilename" "$TO/$_tofilename"
     $LN "$FROM/$_fromfilename" "$TO/$_tofilename"
   fi
@@ -38,7 +38,7 @@ make_link .vimrc
 make_link .zshrc
 make_link .zshrc.d
 make_link peco .config/peco
-mkdir -p $HOME/.config
+mkdir -p "$HOME/.config"
 make_link powerline .config/powerline
 make_link starship.toml .config/starship.toml
 make_link .Rprofile
