@@ -27,8 +27,8 @@ man() {
 typeset -U path cdpath fpath manpath
 bindkey -e
 autoload colors
-# autoload -Uz compinit
-# compinit -u
+autoload -Uz compinit
+compinit -u
 
 source_all() {
     local dir=$1
