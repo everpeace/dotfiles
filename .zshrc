@@ -1,5 +1,11 @@
-# zmodload zsh/zprof && zprof
-alias log='>&2 echo \[$(basename ${(%):-%N})\] '
+if [ -f "$HOME/.zshrc.prof" ]; then
+    zmodload zsh/zprof && zprof
+fi
+if [ -f "$HOME/.zshrc.debug" ]; then
+    alias log='>&2 echo \[$(basename ${(%):-%N})\] '
+else;
+    alias log=': '
+fi
 
 # Language Setting
 export LANG=ja_JP.UTF-8
@@ -62,6 +68,6 @@ export PATH="${HOME}/bin:${PATH}"
 [ -e /usr/local/kubebuilder/bin ] && log add kubebuilder to PATH && export PATH=$PATH:/usr/local/kubebuilder/bin
 [ -e ${HOME}/.embulk/bin ] && log add ~/.embalk/bin to PATH && PATH="${HOME}/.embulk/bin:${PATH}"
 
-# if (which zprof > /dev/null 2>&1) ;then
-#   zprof
-# fi
+if [ -f "$HOME/.zshrc.prof" ]; then
+    zprof
+fi
