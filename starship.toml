@@ -4,9 +4,6 @@ scan_timeout = 30
 format = """\
   $username\
   $hostname\
-  $time\
-\
-  $line_break\
 \
   $kubernetes\
   $docker_context\
@@ -40,7 +37,6 @@ format = """\
   $git_commit\
   $git_state\
   $git_status\
-  $hg_branch\
 \
   $line_break\
 \
@@ -86,4 +82,4 @@ min_time = 200
 show_milliseconds = true
 
 [gcloud]
-format = 'on [$symbol $project(\($region\))]($style) '
+format = 'on [$symbol$project/$account(@$domain)(\($region\))]($style) '
