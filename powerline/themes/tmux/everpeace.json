@@ -2,9 +2,16 @@
   "segments": {
     "right": [
       {
-        "function": "ext.shell.segments.sshuttle.status",
-        "priority": 50
-      },
+				"function": "powerline.segments.common.time.date"
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"name": "time",
+				"args": {
+					"format": "%H:%M:%S",
+					"istime": true
+				}
+			},
       {
         "function": "powerline.segments.common.net.external_ip"
       },
