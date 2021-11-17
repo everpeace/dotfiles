@@ -1,6 +1,5 @@
 [user]
   name = Shingo Omura
-  email = everpeace@gmail.com
 
 [include]
   path = ~/.local/.gitconfig
