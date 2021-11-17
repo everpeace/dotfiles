@@ -1,5 +1,3 @@
-export GHQ_ROOT=$HOME/src
-
 # gh(e)i: ghs + peco + ghq import utilities
 function ghi(){
   [ "$#" -eq 0 ] && echo "Usage : gpi QUERY" && return 1

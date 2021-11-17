@@ -1,6 +1,9 @@
 [user]
   name = Shingo Omura
 
+[ghq]
+  root = ~/src
+
 [include]
   path = ~/.local/.gitconfig
 
