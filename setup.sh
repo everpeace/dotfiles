@@ -58,6 +58,8 @@ mkdir -p .gnupg
 make_link .gnupg/gpg.conf
 make_link .gnupg/gpg-agent.conf
 
+ls ~/.tmux/plugins/tpm/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # IFS=:
 # GIT=false
 # for d in $PATH
