@@ -54,6 +54,9 @@ make_link .gitconfig.d
 make_link vault .vault
 make_link .yabairc
 make_link .skhdrc
+mkdir -p .gnupg
+make_link .gnupg/gpg.conf
+make_link .gnupg/gpg-agent.conf
 
 # IFS=:
 # GIT=false
