@@ -10,9 +10,6 @@ elif type brew >/dev/null 2>&1; then
 fi
 
 if type brew >/dev/null 2>&1; then
-  log activating asdf
-  . ${HOMEBREW_PREFIX}/opt/asdf/asdf.sh
-
   log activating zsh/site-functions,zsh/zsh-completions
   FPATH=${HOMEBREW_PREFIX}/share/zsh/site-functions:$FPATH
   FPATH=${HOMEBREW_PREFIX}/share/zsh-completions:$FPATH
@@ -48,4 +45,8 @@ if type brew >/dev/null 2>&1; then
   log activating zsh-syntax-hilighting
   export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/highlighters
   source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+  log activating asdf
+  . ${HOMEBREW_PREFIX}/opt/asdf/asdf.sh
+  export ASDF_DIR=${HOMEBREW_PREFIX}/opt/asdf/libexec
 fi
