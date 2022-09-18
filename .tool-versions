@@ -1,16 +1,15 @@
-minikube 1.11.0
-terraform 0.11.7
-kubecfg 0.6.0
-kubectl 1.22.2
-ksonnet 0.12.0
-jsonnet 0.10.0
-kubesec 0.9.0
-packer 1.2.5
-docker-slim 1.20
-dockerslim 1.20
-kustomize 4.2.0
-helm 3.2.4
-kubebuilder 2.3.1
-kubeseal 0.15.0
-kind 0.10.0
-nodejs 12.22.5
+minikube 1.27.0
+terraform 1.2.9
+kubectl 1.25.1
+jsonnet 0.18.0
+kustomize 4.5.7
+kubebuilder 3.6.0
+kubeseal 0.18.2
+kind 0.15.0
+nodejs 18.9.0
+packer 1.8.3
+helm 3.9.4
+flux2 0.34.0
+ko
+java
+go-sdk 1.19.1
