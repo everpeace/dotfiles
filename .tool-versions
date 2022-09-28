@@ -12,4 +12,6 @@ helm 3.9.4
 flux2 0.34.0
 ko
 java
-go-sdk 1.19.1
+go-sdk 1.19
+eksctl 0.112.0
+k9s 0.26.6
