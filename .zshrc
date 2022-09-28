@@ -68,6 +68,10 @@ export PATH="${HOME}/bin:${PATH}"
 [ -e /usr/local/kubebuilder/bin ] && log add kubebuilder to PATH && export PATH=$PATH:/usr/local/kubebuilder/bin
 [ -e ${HOME}/.embulk/bin ] && log add ~/.embalk/bin to PATH && PATH="${HOME}/.embulk/bin:${PATH}"
 
+launchctl load ~/Library/LaunchAgents/ssh-agent-multiplexer.plist >/dev/null 2>&1 || true
+launchctl start com.github.everpeace.ssh-agent-multiplexer
+export SSH_AUTH_SOCK=/Users/everpeace/.ssh/ssh-agent-multiplexer/agent.sock
+
 if [ -f "$HOME/.zshrc.prof" ]; then
     zprof
 fi
