@@ -29,8 +29,8 @@ FROM=$(cd "$FROM"; pwd)
 TO=$HOME
 
 # make_link .bash_profile
-make_link .Brewfile
-make_link .Brewfile.lock.json
+make_link Brewfile .Brewfile
+make_link Brewfile.lock.json .Brewfile.lock.json
 make_link .tool-versions
 make_link .asdfrc
 make_link .vim
@@ -57,7 +57,7 @@ make_link .skhdrc
 mkdir -p .gnupg
 make_link .gnupg/gpg.conf
 make_link .gnupg/gpg-agent.conf
-make_link ssh-agent-multiplexer.plist Library/LaunchAgents/ssh-agent-multiplexer.plist
+ls ~/Library/LaunchAgents/ssh-agent-multiplexer.plist || make_link ssh-agent-multiplexer.plist Library/LaunchAgents/ssh-agent-multiplexer.plist
 
 ls ~/.tmux/plugins/tpm/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
