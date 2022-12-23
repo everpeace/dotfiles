@@ -11,11 +11,19 @@ VERSION=v0.0.2
     fi
 )
 
-gpg_agent_sock=$(gpg-agent; gpgconf --list-dirs agent-ssh-socket)
+gpg-agent || (
+    gpgconf --launch gpg-agent && gpg-agent
+)
+gpg_agent_sock=$(gpgconf --list-dirs agent-ssh-socket)
 secretive_sock="${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
 multiplexer_sock="${1}"
 
 mkdir -p "$(dirname "${multiplexer_sock}")"
+if [ -e "${multiplexer_sock}" ]; then
+    kill "$(pgrep ssh-agent-multiplexer)" >/dev/null 2>&1 || true
+    rm "${multiplexer_sock}"
+fi
+
 ssh-agent-multiplexer --debug \
     --listen="${multiplexer_sock}" \
     --add-target="${gpg_agent_sock}" \
