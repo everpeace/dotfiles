@@ -1,3 +1,7 @@
+# [core]
+# 	sshCommand = afssh -f "<MD5 Fingerprint>" --
+# 	sshCommand = afssh --comment "<Comment>" --
+
 [user]
 	# Need to renew this value when start using new machine
 	signingkey = /Users/everpeace/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/0e15f230cf807be6d9f2ccc883407109.pub
