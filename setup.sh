@@ -60,8 +60,6 @@ make_link ssh/conf.d .ssh/conf.d
 
 ls ~/.tmux/plugins/tpm/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-"${FROM}/install_afssh.sh"
-
 # IFS=:
 # GIT=false
 # for d in $PATH
