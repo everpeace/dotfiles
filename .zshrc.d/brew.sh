@@ -47,6 +47,6 @@ if type brew >/dev/null 2>&1; then
   source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
   log activating asdf
-  . ${HOMEBREW_PREFIX}/opt/asdf/asdf.sh
+  . ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh
   export ASDF_DIR=${HOMEBREW_PREFIX}/opt/asdf/libexec
 fi
