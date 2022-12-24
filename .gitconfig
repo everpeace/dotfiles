@@ -4,11 +4,14 @@
 [ghq]
   root = ~/src
 
-[include]
-  path = ~/.local/.gitconfig
-
+# Github.com
 [includeIf "gitdir:~/src/github.com/"]
   path = ~/.gitconfig.d/github.com
+[includeIf "gitdir:~/go/src/github.com/"]
+  path = ~/.gitconfig.d/github.com
+
+[include]
+  path = ~/.local/.gitconfig
 
 [color]
   # colorの設定(以下のコマンドは自動で色つける)
@@ -27,7 +30,7 @@
   editor = /Users/everpeace/bin/git-commit-editor.sh
 
 [http]
-	sslVerify = true
+  sslVerify = true
 
 [alias]
   tr = log --graph --pretty='format:%C(yellow)%h[%cr%Creset] %s %Cgreen(%an)%Creset %Cred%d%Creset'
