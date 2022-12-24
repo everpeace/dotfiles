@@ -5,9 +5,9 @@ ServerAliveCountMax 4
 IgnoreUnknown UseKeychain
 UseKeychain yes
 AddKeysToAgent yes
-ControlPath /tmp/ssh-mux-%C
-ControlMaster yes
-ControlPersist 1m
+# ControlPath /tmp/ssh-mux-%C
+# ControlMaster yes
+# ControlPersist 10m
 
 # # Use SSH_AUTH_SOCK for afssh
 # IdentityAgent /Users/everpeace/.ssh/ssh-agent-multiplexer/agent.sock
