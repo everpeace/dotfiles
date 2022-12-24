@@ -1,16 +1,3 @@
 [submodule ".vim/vundle"]
 	path = .vim/vundle
 	url = git://github.com/gmarik/vundle.git
-[submodule "svm"]
-	path = svm
-	url = https://github.com/yuroyoro/svm.git
-[submodule "sbt-extras"]
-	path = sbt-extras
-	url = https://github.com/paulp/sbt-extras.git
-[submodule "gitsshm"]
-	path = gitsshm
-	url = https://github.com/everpeace/gitsshm.git
-
-[submodule "tmux-gitbar"]
-	path = tmux-gitbar
-	url = https://github.com/aurelien-rainone/tmux-gitbar.git
