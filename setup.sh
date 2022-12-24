@@ -56,6 +56,8 @@ ls ~/Library/LaunchAgents/ssh-agent-multiplexer.plist || make_link ssh-agent-mul
 
 ls ~/.tmux/plugins/tpm/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+"${FROM}/install_afssh.sh"
+
 # IFS=:
 # GIT=false
 # for d in $PATH
