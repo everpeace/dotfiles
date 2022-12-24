@@ -41,13 +41,10 @@ make_link peco .config/peco
 mkdir -p "$HOME/.config"
 make_link powerline .config/powerline
 make_link starship.toml .config/starship.toml
-make_link .Rprofile
 make_link bin
 make_link .tmux.conf
 make_link .mac-provisioning
 make_link .tigrc
-make_link .octaverc
-make_link .ocamlinit
 make_link .gitconfig
 make_link .gitignore_global
 make_link .gitconfig.d
