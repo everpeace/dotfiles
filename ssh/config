@@ -1,0 +1,16 @@
+Include /Users/everpeace/.colima/ssh_config
+
+ServerAliveInterval 15
+ServerAliveCountMax 4
+IgnoreUnknown UseKeychain
+UseKeychain yes
+AddKeysToAgent yes
+ControlPath /tmp/ssh-mux-%C
+ControlMaster yes
+ControlPersist 1m
+
+# # Use SSH_AUTH_SOCK for afssh
+# IdentityAgent /Users/everpeace/.ssh/ssh-agent-multiplexer/agent.sock
+
+Include ~/.ssh/conf.d/hosts/*
+Include ~/.local/.ssh/config

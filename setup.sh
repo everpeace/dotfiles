@@ -54,6 +54,10 @@ make_link .gnupg/gpg.conf
 make_link .gnupg/gpg-agent.conf
 ls ~/Library/LaunchAgents/ssh-agent-multiplexer.plist || make_link ssh-agent-multiplexer.plist Library/LaunchAgents/ssh-agent-multiplexer.plist
 
+mkdir -p ~/.ssh && chmod 700 ~/.ssh
+make_link ssh/config .ssh/config
+make_link ssh/conf.d .ssh/conf.d
+
 ls ~/.tmux/plugins/tpm/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 "${FROM}/install_afssh.sh"
