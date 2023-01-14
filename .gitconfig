@@ -5,9 +5,9 @@
   root = ~/src
 
 # Github.com
-[includeIf "gitdir:~/src/github.com/"]
+[includeIf "hasconfig:remote.*.url:git@github.com:**/**"]
   path = ~/.gitconfig.d/github.com
-[includeIf "gitdir:~/go/src/github.com/"]
+[includeIf "hasconfig:remote.*.url:ssh://git@github.com/**/**"]
   path = ~/.gitconfig.d/github.com
 
 [include]
