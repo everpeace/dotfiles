@@ -49,10 +49,13 @@ make_link .gitconfig
 make_link .gitignore_global
 make_link .gitconfig.d
 make_link vault .vault
+mkdir -p "$HOME/.config/memo"
+make_link memo/config.toml .config/memo/config.toml
 mkdir -p .gnupg
 make_link .gnupg/gpg.conf
 make_link .gnupg/gpg-agent.conf
 ls ~/Library/LaunchAgents/ssh-agent-multiplexer.plist || make_link ssh-agent-multiplexer.plist Library/LaunchAgents/ssh-agent-multiplexer.plist
+ls "${HOME}/bin/memo" || GOBIN="$HOME/bin/" go install github.com/mattn/memo@latest
 
 mkdir -p ~/.ssh && chmod 700 ~/.ssh
 make_link ssh/config .ssh/config

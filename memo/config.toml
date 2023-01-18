@@ -1,0 +1,11 @@
+memodir = "~/Dropbox/memo/_posts"
+editor = "code"
+column = 20
+width = 0
+selectcmd = "peco"
+grepcmd = "ag ${PATTERN} ${FILES}"
+memotemplate = ""
+assetsdir = "."
+pluginsdir = "~/.config/memo/plugins"
+templatedirfile = ""
+templatebodyfile = ""
