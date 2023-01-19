@@ -7,6 +7,11 @@ if [ -f $HOME/.local/init_brew.sh ]; then
 elif type brew >/dev/null 2>&1; then
     log "init brew (by brew shellenv)"
     eval $(brew shellenv)
+elif [ -f /opt/homebrew/bin/brew ]; then
+  log "init brew (by brew /opt/homebrew/bin/brew/shellenv)"
+  eval $(/opt/homebrew/bin/brew shellenv)
+else
+  echo 2>&1 "WARNING: brew not found."
 fi
 
 if type brew >/dev/null 2>&1; then
