@@ -7,6 +7,8 @@ else;
     alias log=': '
 fi
 
+[ -f "${HOME}/.zshrc.zwc" ] || zcompile "${_ZSH_RC_PATH}"
+
 # Language Setting
 export LANG=ja_JP.UTF-8
 export LC_ALL=${LANG}
@@ -36,16 +38,22 @@ autoload colors
 autoload -Uz compinit
 compinit -u
 
+source_single() {
+    local f="$1"
+    [ -f "$f.zwc" ] || zcompile $f
+    . $f
+}
+
 source_all() {
     local dir=$1
-    for f in $(ls -1 $dir/*); do
-        . $f
+    for f in $(ls -1 $dir/* | grep -v ".zwc$"); do
+        source_single $f
     done
 }
 
 source_all ~/.zshrc.d
 if [ -e ~/.local/.zshrc ]; then
-    . ~/.local/.zshrc
+    source_single ~/.local/.zshrc
 fi
 
 # # powerline
