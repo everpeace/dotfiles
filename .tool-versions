@@ -1,6 +1,6 @@
 minikube 1.27.1
 terraform 1.3.3
-kubectl 1.24.6
+kubectl 1.26.0
 jsonnet 0.18.0
 kustomize 4.5.7
 kubebuilder 3.6.0
@@ -12,7 +12,7 @@ helm 3.10.2
 flux2 0.26.2
 ko
 java
-go-sdk 1.19
+go-sdk system
 eksctl 0.112.0
 k9s 0.26.7
 boundary 0.11.0
