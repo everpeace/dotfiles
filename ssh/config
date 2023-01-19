@@ -12,5 +12,12 @@ AddKeysToAgent yes
 # # Use SSH_AUTH_SOCK for afssh
 # IdentityAgent /Users/everpeace/.ssh/ssh-agent-multiplexer/agent.sock
 
+# # ProxyJump sample
+# Host basiton
+#   HostName bastion.fqdn
+# Host server1
+#   HostName     server1.fqdn
+#   ProxyJump    bastion
+
 Include ~/.ssh/conf.d/hosts/*
 Include ~/.local/.ssh/config
