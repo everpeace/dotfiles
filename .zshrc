@@ -7,7 +7,7 @@ else;
     alias log=': '
 fi
 
-[ -f "${HOME}/.zshrc.zwc" ] || zcompile "${_ZSH_RC_PATH}"
+[ -f "${HOME}/.zshrc.zwc" -o "${HOME}/.zshrc" -nt "${HOME}/.zshrc.zwc" ] || zcompile "${_ZSH_RC_PATH}"
 
 # Language Setting
 export LANG=ja_JP.UTF-8
@@ -40,7 +40,7 @@ compinit -u
 
 source_single() {
     local f="$1"
-    [ -f "$f.zwc" ] || zcompile $f
+    [ -f "$f.zwc" -o "$f" -nt "$f.zwc" ] || zcompile $f
     . $f
 }
 
