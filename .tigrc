@@ -52,7 +52,8 @@ bind main xrebase !git rebase --autosquash -i %(commit)
 bind main xreset !?git reset %(commit)
 bind main xReset !?git reset --hard %(commit)
 bind main xco !git checkout %(commit)
-bind main xtag !?git tag "%(prompt Enter new tag name: )"
+bind main xtag !?git tag "%(prompt Enter new tag name: )" %(commit)
+bind main xTag !?git tag -d "%(tag)"
 bind main xcc !@git pbcopy %(commit)
 
 ########
@@ -69,6 +70,8 @@ bind refs xReset !?git reset --hard %(branch)
 bind refs xrebase !git rebase -i %(branch)
 bind refs xmerge !?git merge %(branch)
 bind refs xmove !?git branch -m %(branch) "%(prompt Enter new branch name:)"
+bind refs xtag !?git tag "%(prompt Enter new tag name: )" %(branch)
+bind refs xTag !?git tag -d "%(tag)"
 
 # カーソル行のブランチを親にして入力した名前のブランチを作成
 bind refs xbranch !?git checkout -b "%(prompt Enter new branch name: )" %(branch)
