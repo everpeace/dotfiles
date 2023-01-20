@@ -55,6 +55,10 @@ bind main xco !git checkout %(commit)
 bind main xtag !?git tag "%(prompt Enter new tag name: )" %(commit)
 bind main xTag !?git tag -d "%(tag)"
 bind main xcc !@git pbcopy %(commit)
+bind main ;c @gh browse -c %(commit)
+bind main ;b @gh browse -b %(branch)
+bind main ;t @gh browse -b %(tag)
+bind main ;r @gh browse
 
 ########
 # refs view
@@ -72,6 +76,9 @@ bind refs xmerge !?git merge %(branch)
 bind refs xmove !?git branch -m %(branch) "%(prompt Enter new branch name:)"
 bind refs xtag !?git tag "%(prompt Enter new tag name: )" %(branch)
 bind refs xTag !?git tag -d "%(tag)"
+bind main ;b @gh browse -b %(branch)
+bind main ;t @gh browse -b %(tag)
+bind main ;r @gh browse
 
 # カーソル行のブランチを親にして入力した名前のブランチを作成
 bind refs xbranch !?git checkout -b "%(prompt Enter new branch name: )" %(branch)
@@ -81,4 +88,3 @@ bind refs xbranch !?git checkout -b "%(prompt Enter new branch name: )" %(branch
 ########
 bind status xstash !?git stash save "%(prompt Enter stash name: )"
 bind status xamend !?git commit --amend
-
