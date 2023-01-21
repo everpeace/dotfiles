@@ -1,11 +1,4 @@
-# lazy load kubectl compltion
-function kubectl() {
-    if ! type __start_kubectl >/dev/null 2>&1; then
-        source <(command kubectl completion zsh)
-    fi
-
-    command kubectl "$@"
-}
+source <(command kubectl completion zsh)
 
 # wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/kubectl/kubectl.plugin.zsh
 
@@ -13,7 +6,7 @@ function kubectl() {
 alias k=kubectl
 
 # Execute a kubectl command against all namespaces
-alias kca='_kca(){ kubectl "$@" --all-namespaces;  unset -f _kca; }; _kca'
+# alias kca='_kca(){ kubectl "$@" --all-namespaces;  unset -f _kca; }; _kca'
 
 # # Apply a YML file
 # alias kaf='kubectl apply -f'
