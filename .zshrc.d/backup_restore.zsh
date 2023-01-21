@@ -1,8 +1,8 @@
 #! /usr/bin/env zsh
-
 export _BACKUP_FILE_DIR=$(realpath "$(dirname "$(echo ${(%):-%N})")/..")
 export _KREW_PLUGIN_BACKUP_TXT="${_BACKUP_FILE_DIR}/krew_plugin_backup.txt"
 export _ASDF_PLUGIN_BACKUP_TXT="${_BACKUP_FILE_DIR}/asdf_plugin_backup.txt"
+
 
 function krew_plugin_backup() {
     echo "Backing up krew plugin list to ${_KREW_PLUGIN_BACKUP_TXT}"

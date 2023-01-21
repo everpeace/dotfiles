@@ -1,25 +1,10 @@
 # configure home brew packages
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-if [ -f $HOME/.local/init_brew.sh ]; then
-    log "init brew (by $HOME/.local/init_brew.sh)"
-    source $HOME/.local/init_brew.sh
-elif type brew >/dev/null 2>&1; then
-    log "init brew (by brew shellenv)"
-    eval $(brew shellenv)
-elif [ -f /opt/homebrew/bin/brew ]; then
-  log "init brew (by brew /opt/homebrew/bin/brew/shellenv)"
-  eval $(/opt/homebrew/bin/brew shellenv)
-else
-  echo 2>&1 "WARNING: brew not found."
-fi
-
 if type brew >/dev/null 2>&1; then
   log activating zsh/site-functions,zsh/zsh-completions
   FPATH=${HOMEBREW_PREFIX}/share/zsh/site-functions:$FPATH
   FPATH=${HOMEBREW_PREFIX}/share/zsh-completions:$FPATH
-  autoload -Uz compinit
-  compinit -u
 
   log activating autojump
   [[ -s ${HOMEBREW_PREFIX}/etc/autojump.sh ]] && . ${HOMEBREW_PREFIX}/etc/autojump.sh
@@ -50,8 +35,4 @@ if type brew >/dev/null 2>&1; then
   log activating zsh-syntax-hilighting
   export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/highlighters
   source ${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-  log activating asdf
-  . ${HOMEBREW_PREFIX}/opt/asdf/libexec/asdf.sh
-  export ASDF_DIR=${HOMEBREW_PREFIX}/opt/asdf/libexec
 fi

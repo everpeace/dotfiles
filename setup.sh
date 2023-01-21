@@ -15,7 +15,9 @@ function make_link()
     _fromfilename=$1
     _tofilename=$2
   fi
+
   if [ $# -eq 1 ] || [ $# -eq 2 ];then
+    mkdir -p "$(dirname "${TO}/${_tofilename}")"
     echo "$LN" "$FROM/$_fromfilename" "$TO/$_tofilename"
     $LN "$FROM/$_fromfilename" "$TO/$_tofilename"
   fi
@@ -28,6 +30,7 @@ FROM=$(cd "$FROM"; pwd)
 # リンクを張る場所
 TO=$HOME
 
+
 # make_link .bash_profile
 make_link Brewfile .Brewfile
 make_link Brewfile.lock.json .Brewfile.lock.json
@@ -35,13 +38,18 @@ make_link .tool-versions
 make_link .asdfrc
 make_link .vim
 make_link .vimrc
+make_link .zshenv
 make_link .zshrc
 make_link .zshrc.d
 make_link peco .config/peco
-mkdir -p "$HOME/.config"
 make_link powerline .config/powerline
 make_link starship.toml .config/starship.toml
 make_link bin
+
+# sheldon
+mkdir -p "$HOME"/.local/{.zshrc.d/sync,bin}
+make_link sheldon .config/sheldon
+
 make_link .tmux.conf
 make_link .mac-provisioning
 make_link .tigrc
@@ -49,7 +57,6 @@ make_link .gitconfig
 make_link .gitignore_global
 make_link .gitconfig.d
 make_link vault .vault
-mkdir -p "$HOME/.config/memo"
 make_link memo/config.toml .config/memo/config.toml
 mkdir -p .gnupg
 make_link .gnupg/gpg.conf
