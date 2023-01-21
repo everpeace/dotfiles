@@ -12653,6 +12653,12 @@
         "options": {
           "full_name": "dropbox"
         }
+      },
+      "abyssoft-teleport": {
+        "version": "1.3.5",
+        "options": {
+          "full_name": "abyssoft-teleport"
+        }
       }
     },
     "mas": {
