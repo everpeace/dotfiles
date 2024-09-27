@@ -1,0 +1,68 @@
+" 基本設定
+set nocompatible              " Vi 互換モードを無効にする
+syntax on                     " シンタックスハイライトを有効にする
+set number                    " 行番号を表示する
+set relativenumber            " 相対行番号を表示する
+set tabstop=4                 " タブをスペース4つ分に設定
+set shiftwidth=4              " 自動インデントで使用するスペースの数
+set expandtab                 " タブの代わりにスペースを使用する
+set autoindent                " 新しい行で現在の行のインデントをコピーする
+set smartindent               " 新しい行でスマートインデントを有効にする
+set hlsearch                  " 検索結果をハイライトする
+set incsearch                 " インクリメンタル検索を有効にする
+set ignorecase                " 検索時に大文字小文字を無視する
+set smartcase                 " 検索パターンに大文字が含まれる場合はignorecaseを無視する
+set clipboard=unnamedplus     " システムクリップボードを使用する
+set cursorline                " 現在の行をハイライトする
+set showmatch                 " 対応する括弧をハイライトする
+set wildmenu                  " コマンドライン補完を有効にする
+set wildmode=list:longest     " コマンドライン補完モード
+
+" 見た目の設定
+set background=dark           " 背景色を暗く設定する
+set termguicolors             " 24ビットRGBカラーを有効にする
+colorscheme desert            " カラースキームを設定する
+
+" メッセージの表示を改善する
+set cmdheight=2
+
+" ステータスラインを常に表示する
+set laststatus=2
+
+" カーソル位置の行と列番号を表示する
+set ruler
+
+" マウスサポートを有効にする
+set mouse=a
+
+" ウィンドウの分割
+set splitbelow                " 水平方向の分割を下に設定する
+set splitright                " 垂直方向の分割を右に設定する
+
+" 行の折り返しを有効にする
+set wrap
+set linebreak
+set showbreak=>>>
+
+" 折り畳み
+set foldmethod=syntax         " シンタックスに基づいて折り畳みを設定する
+set foldlevelstart=99         " デフォルトでほとんどの折り畳みを開く
+
+" スワップファイルを無効にする
+set noswapfile
+
+" ファイルタイプの設定
+filetype plugin indent on     " ファイルタイプの検出、プラグイン、インデントを有効にする
+
+" プラグイン
+set runtimepath+=~/.vim
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()

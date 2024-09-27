@@ -1,0 +1,59 @@
+[user]
+  name = Shingo Omura
+  email = everpeace@gmail.com
+
+[ghq]
+  root = ~/src
+
+# Github.com
+[includeIf "hasconfig:remote.*.url:*://github.com/**/**"]
+  path = ~/.config/git/config.d/github.com
+[includeIf "hasconfig:remote.*.url:git@github.com:**/**"]
+  path = ~/.config/git/config.d/github.com
+
+[include]
+  path = ~/.config/git.local/config
+
+[color]
+  # colorの設定(以下のコマンドは自動で色つける)
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  grep = auto
+
+[push]
+  default = tracking       # defaultのpush先はtrackingしているリポジトリ
+
+[core]
+  autocrlf = input                 # CRLFを自動変換
+  editor = /Users/everpeace/bin/git-commit-editor.sh
+  pager = delta
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
+[http]
+  sslVerify = true
+
+[alias]
+  tr = log --graph --pretty='format:%C(yellow)%h[%cr%Creset] %s %Cgreen(%an)%Creset %Cred%d%Creset'
+  st = status --ignored
+  cb = rev-parse --abbrev-ref HEAD
+  pbcopy = !printf "$1" | pbcopy
+  ignore = "!gi() { curl -sL gitignore.io/api/$@ ;}; gi"
+
+[filter "lfs"]
+  clean = git lfs clean %f
+  smudge = git lfs smudge %f
+  required = true
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+
+# [pager]
+# 	diff = diff-so-fancy | less --tabs=4 -RFX --pattern='^(added|deleted|modified): '
+# 	show = diff-so-fancy | less --tabs=4 -RFX

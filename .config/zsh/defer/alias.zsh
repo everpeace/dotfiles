@@ -1,0 +1,1 @@
+abbr -S k='kubectl'

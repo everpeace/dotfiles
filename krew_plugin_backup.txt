@@ -1,6 +1,6 @@
-bind/bind
 explore
 krew
+kvaps/node-shell
 rbac-lookup
 rbac-tool
 rolesum

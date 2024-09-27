@@ -1,0 +1,19 @@
+
+[settings]
+experimental = true
+
+[tools]
+terraform = "latest"
+kubectl = "latest"
+krew = "latest"
+stern = "latest"
+argo = "latest"
+k9s = "latest"
+tfenv = "latest"
+go = "latest"
+eksctl = "latest"
+protoc = "latest"
+protoc-gen-go = "latest"
+protoc-gen-go-grpc = "latest"
+protoc-gen-grpc-web = "latest"
+goreleaser = "latest"

@@ -1,0 +1,73 @@
+# `sheldon` configuration file
+# ----------------------------
+#
+# You can modify this file directly or you can use one of the following
+# `sheldon` commands which are provided to assist in editing the config file:
+#
+# - `sheldon add` to add a new plugin to the config file
+# - `sheldon edit` to open up the config file in the default editor
+# - `sheldon remove` to remove a plugin from the config file
+#
+# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+
+
+shell = "zsh"
+apply = ["defer"]
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+apply = ["source"]
+
+[plugins.zsh-bindkey]
+inline = 'bindkey -e'
+
+[plugins.zsh-colors]
+inline = 'autoload -Uz colors && zsh-defer colors'
+
+[plugins.zsh-compinit]
+inline = 'autoload -Uz compinit && zsh-defer compinit'
+
+[plugins.zsh-autocomplete]
+github = "marlonrichert/zsh-autocomplete"
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+[plugins.aws_zsh_completer]
+remote = "https://raw.githubusercontent.com/aws/aws-cli/v2/bin/aws_zsh_completer.sh"
+
+[plugins.zsh-colored-man-pages]
+github = "ael-code/zsh-colored-man-pages"
+
+[plugins.zsh-abbr]
+github = "olets/zsh-abbr"
+
+[plugins.pyenv]
+github = "davidparsson/zsh-pyenv-lazy"
+
+#
+# .zsh files: mangaged in this repo
+#
+[plugins.recipe]
+local = "~/.config/zsh/defer"
+[plugins.recipe-sync]
+local = "~/.config/zsh/sync"
+apply = ["source"]
+
+#
+# .zsh files: local overrides
+#
+[plugins.ensure-local-recipe-dir]
+inline = 'mkdir -p ~/.config/zsh.local/{sync,defer}'
+[plugins.recipe-local]
+local = "~/.config/zsh.local/defer"
+[plugins.recipe-local-sync]
+local = "~/.config/zsh.local/sync"
+apply = ["source"]
+
+#
+# zsh-syntax-highlighting must be sourced at the end
+# ref: https://github.com/zsh-users/zsh-syntax-highlighting
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+
+[templates]
+defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
