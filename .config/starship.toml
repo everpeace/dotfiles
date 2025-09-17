@@ -1,6 +1,8 @@
 # https://starship.rs/ja-JP/config/
 add_newline = true
-scan_timeout = 30
+scan_timeout = 10
+command_timeout = 200
+
 format = """\
   $username\
   $hostname\

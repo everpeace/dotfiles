@@ -1,73 +1,181 @@
-# `sheldon` configuration file
-# ----------------------------
+# =============================================================================
+# sheldon plugins.toml
+# 目的:
+#   - 起動直後の入力ブロックを避けるため、ZLE/補完に関わるものは同期ロード。
+#   - 本当に後回しで良いものだけ defer。
+# 読み込み順:
+#   1) zsh-defer
+#   2) fpath 整備（補完ファイルを compinit 前に見せる）
+#   3) compinit（キャッシュ使用）
+#   4) ZLE系 / 補完系（キーバインド・ウィジェット・オートコンプリート等）
+#   5) その他（見た目・ツール連携など。重いものだけ defer）
+#   6) 最後に zsh-syntax-highlighting（公式推奨）
 #
-# You can modify this file directly or you can use one of the following
-# `sheldon` commands which are provided to assist in editing the config file:
-#
-# - `sheldon add` to add a new plugin to the config file
-# - `sheldon edit` to open up the config file in the default editor
-# - `sheldon remove` to remove a plugin from the config file
-#
-# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
-
+# 追加・変更のルール:
+#   - 「ZLE を触る/補完を登録する」もの → 4) に置く
+#   - 「fpath を増やす/補完定義(_foo)を置く」もの → 2) に置く
+#   - 端末に触らない・重いだけの処理 → 5) で apply=["defer"]
+# =============================================================================
 
 shell = "zsh"
-apply = ["defer"]
-
-[plugins.zsh-defer]
-github = "romkatv/zsh-defer"
 apply = ["source"]
 
+#------------------------------------------------------------------------------
+# 1) zsh-defer 本体
+#------------------------------------------------------------------------------
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+
+#------------------------------------------------------------------------------
+# 2) fpath 整備
+#------------------------------------------------------------------------------
+[plugins.custom-funcs]
+inline = """
+fpath=(
+    ${HOME}/.config/zsh/funcs
+    ${HOME}/.zfuncs
+    "${fpath[@]}"
+)
+# ディレクトリが空でもエラーにしない
+autoload -Uz $(ls ${HOME}/.config/zsh/funcs/ 2>/dev/null)
+"""
+
+[plugins.gen-static-completions]
+inline = '''
+# Generate static completion files into ~/.zfuncs only if missing.
+local ZFUNCS="${HOME}/.zfuncs"
+mkdir -p "$ZFUNCS"
+
+_gen_comp() {
+  local out="$1"; shift
+  # generate only if file is missing/empty and the command exists
+  if [[ ! -s "$out" ]] && command -v "$1" >/dev/null 2>&1; then
+    "$@" >| "$out" 2>/dev/null || true
+  fi
+}
+
+# one-time generators
+_gen_comp "$ZFUNCS/_docker"   docker completion zsh
+_gen_comp "$ZFUNCS/_stern"    stern --completion=zsh
+_gen_comp "$ZFUNCS/_helm"     helm completion zsh
+_gen_comp "$ZFUNCS/_klog"     klog completion -c zsh
+_gen_comp "$ZFUNCS/_kwokctl"  kwokctl completion zsh
+_gen_comp "$ZFUNCS/_fke"      fke completion zsh
+_gen_comp "$ZFUNCS/_task"     task --completion zsh
+_gen_comp "$ZFUNCS/_uv"       uv generate-shell-completion zsh
+_gen_comp "$ZFUNCS/_uvx"      uvx --generate-shell-completion zsh
+
+# bun: symlink if available (fallback to copy)
+if [[ -r "$HOME/.bun/_bun" && ! -e "$ZFUNCS/_bun" ]]; then
+  ln -s "$HOME/.bun/_bun" "$ZFUNCS/_bun" 2>/dev/null || cp "$HOME/.bun/_bun" "$ZFUNCS/_bun"
+fi
+'''
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+#------------------------------------------------------------------------------
+# 3) compinit with cache
+#------------------------------------------------------------------------------
+[plugins.zsh-compinit]
+inline = '''
+autoload -Uz compinit
+if [[ -r ${ZDOTDIR:-$HOME}/.zcompdump ]]; then
+  compinit -C
+else
+  compinit -i
+fi
+# 一度だけ zcompile（存在 & 未コンパイルなら）
+[[ -r ${ZDOTDIR:-$HOME}/.zcompdump && ! -r ${ZDOTDIR:-$HOME}/.zcompdump.zwc ]] && zcompile ${ZDOTDIR:-$HOME}/.zcompdump
+'''
+
+#------------------------------------------------------------------------------
+# 4) ZLE系 / 補完系（キーバインド・ウィジェット・オートコンプリート等）
+#------------------------------------------------------------------------------
 [plugins.zsh-bindkey]
 inline = 'bindkey -e'
 
-[plugins.zsh-colors]
-inline = 'autoload -Uz colors && zsh-defer colors'
+[plugins.zsh-edit-command-line]
+inline = '''
+autoload -Uz edit-command-line
+zle -N edit-command-line
+# emacs キーマップ想定（bindkey -e）
+bindkey -M emacs '^xe'  edit-command-line
+bindkey -M emacs '^x^e' edit-command-line
+'''
 
-[plugins.zsh-compinit]
-inline = 'autoload -Uz compinit && zsh-defer compinit'
+[plugins.zsh-history]
+inline = '''
+HISTFILE=${HOME}/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt hist_ignore_all_dups hist_ignore_dups share_history append_history inc_append_history hist_no_store hist_reduce_blanks
+# setopt extended_history  # タイムスタンプが欲しければ有効化
+'''
 
 [plugins.zsh-autocomplete]
 github = "marlonrichert/zsh-autocomplete"
-[plugins.zsh-completions]
-github = "zsh-users/zsh-completions"
-[plugins.aws_zsh_completer]
-remote = "https://raw.githubusercontent.com/aws/aws-cli/v2/bin/aws_zsh_completer.sh"
-
-[plugins.zsh-colored-man-pages]
-github = "ael-code/zsh-colored-man-pages"
 
 [plugins.zsh-abbr]
 github = "olets/zsh-abbr"
+rev = "v5.3.0"  # _abbr_init:160: command not found: job-queue__zsh-abbr が出てしまうためフルバージョンにping
+
+[plugins.aws_zsh_completer]
+remote = "https://raw.githubusercontent.com/aws/aws-cli/v2/bin/aws_zsh_completer.sh"
+
+[plugins.zoxide]
+inline = '''
+# 対話シェルのみで初期化
+if [[ -o interactive ]] && command -v zoxide >/dev/null 2>&1; then
+  # 最軽量: ディレクトリ変更時のみフック
+  eval "$(zoxide init zsh --hook pwd --cmd z)"
+fi
+'''
+
+#------------------------------------------------------------------------------
+# 5) その他（見た目・ツール連携など）
+#    - 軽量なものは同期でOK
+#    - 重いが TTY を触らないものは defer
+#------------------------------------------------------------------------------
+[plugins.zsh-colored-man-pages]
+github = "ael-code/zsh-colored-man-pages"
+
+[plugins.zsh-colors]
+inline = 'autoload -Uz colors && colors'
 
 [plugins.pyenv]
 github = "davidparsson/zsh-pyenv-lazy"
+apply = ["defer"]
 
-#
-# .zsh files: mangaged in this repo
-#
+# レシピ群：defer/即時で分離（ZLE を触るものは syncに置く）
 [plugins.recipe]
 local = "~/.config/zsh/defer"
+apply = ["defer"]
+
 [plugins.recipe-sync]
 local = "~/.config/zsh/sync"
-apply = ["source"]
 
-#
-# .zsh files: local overrides
-#
+# ローカル上書きディレクトリ
 [plugins.ensure-local-recipe-dir]
 inline = 'mkdir -p ~/.config/zsh.local/{sync,defer}'
+
 [plugins.recipe-local]
 local = "~/.config/zsh.local/defer"
+apply = ["defer"]
+
 [plugins.recipe-local-sync]
 local = "~/.config/zsh.local/sync"
-apply = ["source"]
 
-#
-# zsh-syntax-highlighting must be sourced at the end
-# ref: https://github.com/zsh-users/zsh-syntax-highlighting
+#------------------------------------------------------------------------------
+# 6) 最後に syntax-highlighting（公式推奨：必ず末尾）
+#------------------------------------------------------------------------------
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
 
+#------------------------------------------------------------------------------
+# defer 時の展開テンプレート（defer 指定プラグインにのみ適用）
+#------------------------------------------------------------------------------
 [templates]
-defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
+defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer _sheldon_src \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"
+# defer時のlog(~/.local/state/zsh/defer.log)を残すばあいはこっちを使う
+# defer = "{{ hooks | get: \"pre\" | nl }}{% for file in files %}zsh-defer _sheldon_src_logged \"{{ file }}\"\n{% endfor %}{{ hooks | get: \"post\" | nl }}"

@@ -41,7 +41,6 @@ install .zshrc
 install .python-version
 install_all .config
 install_all bin
-install_all Library/LaunchAgents
 install_all .gnupg && chmod 700 "${TO}/.gnupg"
 install_all .ssh && chmod 700 "${TO}/.ssh"
 
@@ -50,5 +49,5 @@ install_all .ssh && chmod 700 "${TO}/.ssh"
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +'PlugInstall --sync' +qa
 
-# # rye
-# [ -e $HOME/.rye ] || rye
+defaults write -g InitialKeyRepeat -int 11
+defaults write -g KeyRepeat -int 1

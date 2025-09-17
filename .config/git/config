@@ -29,12 +29,22 @@
   autocrlf = input                 # CRLFを自動変換
   editor = /Users/everpeace/bin/git-commit-editor.sh
   pager = delta
+  fsmonitor = true
+  untrackedcache = true
 
 [merge]
     conflictstyle = diff3
 
 [diff]
-    colorMoved = default
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
 
 [http]
   sslVerify = true
@@ -53,6 +63,9 @@
 
 [delta]
     navigate = true    # use n and N to move between diff sections
+
+[help]
+    autocorrect = prompt
 
 # [pager]
 # 	diff = diff-so-fancy | less --tabs=4 -RFX --pattern='^(added|deleted|modified): '

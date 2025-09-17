@@ -1,14 +1,17 @@
 # starship
 eval "builtin $(starship init zsh)"
 
-# zellij
-export ZELLIJ_AUTO_ATTACH=false
+# zellij autostart
 if [[ -z "$ZELLIJ" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$SSH_TTY" ]] && [ -z "$TMUX" ]; then
-    if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
-        zellij attach -c
-    else
-        zellij
-    fi
+    zellij $(zellij list-sessions --reverse --no-formatting \
+        | fzf --ansi --exit-0 \
+          --query '!EXITED' \
+          --header 'SELECT ZELLIJ SESSION' \
+          --bind 'enter:become(echo -e attach -c {1})' \
+          --bind 'ctrl-r:reload(zellij list-sessions --reverse --no-formatting)' \
+          --bind 'ctrl-c:abort' \
+          --layout=reverse\
+    )
 
     if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
         exit

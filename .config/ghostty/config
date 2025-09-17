@@ -1,0 +1,37 @@
+# Theme
+theme = "Pro"
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+cursor-opacity = 0.7
+shell-integration-features = no-cursor
+cursor-invert-fg-bg = true
+
+
+# Window
+window-padding-x = 20
+window-padding-y = 5
+window-padding-balance = true
+window-theme = ghostty
+background-opacity = 0.9
+background-blur-radius = 20
+macos-titlebar-style = transparent
+
+# Splits
+split-divider-color = #727272
+
+# Font
+font-family = "JetBrainsMono Nerd Font Mono"
+font-family = "UDEV Gothic NFLG"
+font-size = 18
+font-feature = "-calt"
+font-feature = "-liga"
+font-feature = "-dlig"
+
+# Key
+macos-option-as-alt = false
+
+# Mouse
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2

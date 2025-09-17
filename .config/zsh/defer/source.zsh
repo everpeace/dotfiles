@@ -1,16 +1,11 @@
 #
-# Generic utilities
-#
-function quietly {
-    "$@" >/dev/null 2>&1
-}
-
-#
 # Git utilities
 #
 function ghi {
   [ "$#" -eq 0 ] && echo "Usage : gpi QUERY" && return 1
-  ghs -k true -t $(gh auth token -h github.com) "$@" | peco | awk '{print $1}' | ghq get -p
+  ( 
+    ghs -k true -t $(gh auth token -h github.com) "$@" | sed -e 's/^/github.com\t/';
+  ) | peco | awk '{print "https://"$1"/"$2".git"}' | ghq get
 }
 
 function g {
@@ -20,7 +15,7 @@ function g {
   cd "$full_path"
 }
 
-function groot {
+function grt {
   local _root_dir="$(git rev-parse --show-toplevel 2>/dev/null)"
   if [[ $? -gt 0 ]]; then
     >&2 echo 'Not a Git repo!'
@@ -44,35 +39,23 @@ function groot {
 }
 
 #
-# Completions
-#
-quietly type docker && source <(docker completion zsh)
-quietly check stern && source <(stern --completion=zsh)
-quietly check helm && source <(helm completion zsh)
-quietly check rye && source <(rye self completion -s zsh)
-
-#
 # Tools setup
 #
 # direnv
 eval "$(direnv hook zsh)"
 
-# gcloud
-[ -f "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/path.zsh.inc" ] && . "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-[ -f "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/completion.zsh.inc" ] && . "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+# gcloud (遅延ロード)
+if [[ -n $HOMEBREW_PREFIX ]]; then
+  _gcloud_lazy() {
+    local inc="$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+    [[ -r $inc ]] && source "$inc"
+    unfunction _gcloud_lazy
+  }
+  compdef _gcloud_lazy gcloud
+fi
 
-# krew
-[ -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/kubesess.sh" ] && . ${HOMEBREW_PREFIX}/share/zsh/site-functions/kubesess.sh
+# kubesess
+[ -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/kubesess.sh" ] && source ${HOMEBREW_PREFIX}/share/zsh/site-functions/kubesess.sh
 
 # ssh-agent-multiplexer
-if quietly type launchctl; then
-  quietly launchctl load ~/Library/LaunchAgents/ssh-agent-multiplexer.plist >/dev/null || true
-  launchctl start com.github.everpeace.ssh-agent-multiplexer
-  [[ ! -v SSH_CONNECTION ]] && export SSH_AUTH_SOCK=$HOME/.ssh/ssh-agent-multiplexer/agent.sock
-fi
-
-# mise
-if quietly type mise; then
-  eval "$(mise activate zsh --shims)"
-  eval "$(mise activate zsh)"
-fi
+[[ ! -v SSH_CONNECTION ]] && export SSH_AUTH_SOCK="$(ssh-agent-multiplexer config print | grep '^listen' |cut -d'"' -f 2)"

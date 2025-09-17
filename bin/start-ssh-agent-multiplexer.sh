@@ -1,21 +1,26 @@
 #! /usr/bin/env bash
-set -euo pipefail
-VERSION=v0.0.2
+set -xeuo pipefail
+VERSION=v0.2.0
 
 (
     cd "${HOME}/bin"
-    if [ ! -e ssh-agent-multiplexer ]; then
+    if [ ! -e ssh-agent-multiplexer ] || ./ssh-agent-multiplexer --version | grep -v ${VERSION#v}; then
         echo "Downloading ssh-agent-multiplexer to ${HOME}/bin/ssh-agent-multiplexer" 1>&2
         curl -sL "https://github.com/everpeace/ssh-agent-multiplexer/releases/download/${VERSION}/ssh-agent-multiplexer_${VERSION#v}_darwin_arm64.tar.gz" | \
-            tar zfx - ssh-agent-multiplexer
+            tar zfx - ssh-agent-multiplexer ssh-agent-mux-select
     fi
 )
 
-gpg-agent || (
-    gpgconf --launch gpg-agent && gpg-agent
-)
-gpg_agent_sock=$(gpgconf --list-dirs agent-ssh-socket)
+# gpg-agent || (
+#     gpgconf --launch gpg-agent && gpg-agent
+# )
+# gpg_agent_sock=$(gpgconf --list-dirs agent-ssh-socket)
+
+set +u
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent)"
+set -u
 secretive_sock="${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
+bitwarden_sock="${HOME}/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
 multiplexer_sock="${1}"
 
 mkdir -p "$(dirname "${multiplexer_sock}")"
@@ -24,7 +29,18 @@ if [ -e "${multiplexer_sock}" ]; then
     rm "${multiplexer_sock}"
 fi
 
-ssh-agent-multiplexer --debug \
-    --listen="${multiplexer_sock}" \
-    --add-target="${gpg_agent_sock}" \
-    --target="${secretive_sock}"
+conf="${HOME}/Library/Application Support/ssh-agent-multiplexer/config.toml"
+mkdir -p "$(dirname "${conf}")"
+cat << EOF > "${conf}"
+debug = true
+listen = "${multiplexer_sock}"
+add_targets = [
+    "${SSH_AUTH_SOCK}"
+]
+targets = [
+    "${bitwarden_sock}",
+    "${secretive_sock}"
+]
+EOF
+
+"${HOME}/bin/ssh-agent-multiplexer"
