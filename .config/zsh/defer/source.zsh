@@ -58,4 +58,4 @@ fi
 [ -f "${HOMEBREW_PREFIX}/share/zsh/site-functions/kubesess.sh" ] && source ${HOMEBREW_PREFIX}/share/zsh/site-functions/kubesess.sh
 
 # ssh-agent-multiplexer
-[[ ! -v SSH_CONNECTION ]] && export SSH_AUTH_SOCK="$(ssh-agent-multiplexer config print | grep '^listen' |cut -d'"' -f 2)"
+[[ ! -v SSH_CONNECTION ]] && export SSH_AUTH_SOCK="$(eval echo "$(ssh-agent-multiplexer config print | grep '^listen' |cut -d'"' -f 2)")"
