@@ -6,6 +6,6 @@ add_targets = [
 targets = [
     "${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock",
     "${HOME}/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock",
-    # "/Users/somura/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
+    "${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
 ]
 select_target_command = "/opt/homebrew/bin/ssh-agent-mux-select"
