@@ -21,5 +21,3 @@
 	allowedSignersFile = ~/.ssh/allowed_signers
 [github]
 	host = github.com
-[include]
-	path = ~/.vault/github.com.token
