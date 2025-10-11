@@ -1,3 +1,5 @@
+# atuin
+eval "$(atuin init zsh)"
 # starship
 eval "builtin $(starship init zsh)"
 
