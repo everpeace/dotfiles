@@ -30,6 +30,7 @@ format = """\
   $aws\
   $gcloud\
   $crystal\
+  $mise\
   $cmd_duration\
 \
   $line_break\
@@ -85,3 +86,6 @@ show_milliseconds = true
 
 [gcloud]
 format = 'on [$symbol$project/$account(@$domain)(\($region\))]($style) '
+
+[mise]
+disabled = false
