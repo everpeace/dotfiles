@@ -10,4 +10,5 @@ invert = true
 command_chaining = true
 enter_accept = false
 
-dotfiles = false
+[dotfiles]
+enabled = false
