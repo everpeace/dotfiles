@@ -43,6 +43,7 @@ install_all .config
 install_all bin
 install_all .gnupg && chmod 700 "${TO}/.gnupg"
 install_all .ssh && chmod 700 "${TO}/.ssh"
+install Library/LaunchAgents/com.everpeace.atuinserver.plist
 
 # vim-plug
 [ -f ~/.vim/autoload/plug.vim ] || curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

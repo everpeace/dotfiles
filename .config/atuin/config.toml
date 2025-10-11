@@ -1,0 +1,13 @@
+update_check = true
+
+sync_address = "http://localhost:9999"
+auto_sync = false
+sync_frequency = "1h"
+
+style = "full"
+invert = true
+
+command_chaining = true
+enter_accept = false
+
+dotfiles = false
