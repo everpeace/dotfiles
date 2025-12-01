@@ -5,7 +5,9 @@ auto_sync = false
 sync_frequency = "1h"
 
 style = "full"
-invert = true
+invert = false
+workspaces = true
+filter_mode = "workspace"
 
 command_chaining = true
 enter_accept = false
