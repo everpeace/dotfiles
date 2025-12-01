@@ -43,7 +43,8 @@ install_all .config
 install_all bin
 install_all .gnupg && chmod 700 "${TO}/.gnupg"
 install_all .ssh && chmod 700 "${TO}/.ssh"
-install Library/LaunchAgents/com.everpeace.atuinserver.plist
+install Library/LaunchAgents/com.somura.atuinserver.plist
+cp Library/Containers/net.sonuscape.mouseless/Data/.mouseless/configs/config.yaml "${TO}/Library/Containers/net.sonuscape.mouseless/Data/.mouseless/configs/config.yaml"
 
 # vim-plug
 [ -f ~/.vim/autoload/plug.vim ] || curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
