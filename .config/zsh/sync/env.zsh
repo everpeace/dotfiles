@@ -28,5 +28,5 @@ fi
 export GPG_TTY=$(tty)
 
 # local bins
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 

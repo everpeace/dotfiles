@@ -1,0 +1,4 @@
+--when.repositories = ["~/src/github.com"]
+
+[signing]
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDAqFtOcCXamAdiCA201r7M5vIJDzVu2DjPzKx6P1txt"

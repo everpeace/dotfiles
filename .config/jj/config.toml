@@ -1,0 +1,13 @@
+[user]
+name = "Shingo Omura"
+email = "everpeace@gmail.com"
+
+[signing]
+behavior = "own"
+backend = "ssh"
+backends.ssh.allowed-signers = "~/.ssh/allowed_signers"
+
+[ui]
+editor = "/Users/somura/bin/git-commit-editor.sh"
+diff-editor = "meld-3"
+merge-editor = "vscode"
