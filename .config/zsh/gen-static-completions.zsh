@@ -20,6 +20,7 @@ _gen_comp "$ZFUNCS/_fke"      fke completion zsh
 _gen_comp "$ZFUNCS/_task"     task --completion zsh
 _gen_comp "$ZFUNCS/_uv"       uv generate-shell-completion zsh
 _gen_comp "$ZFUNCS/_uvx"      uvx --generate-shell-completion zsh
+_gen_comp "$ZFUNCS/_kubectl_check" kubectl-check completion zsh
 
 # bun: symlink if available (fallback to copy)
 if [[ -r "$HOME/.bun/_bun" && ! -e "$ZFUNCS/_bun" ]]; then
